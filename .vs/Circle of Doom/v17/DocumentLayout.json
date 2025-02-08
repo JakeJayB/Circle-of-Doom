@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|c:\\users\\modre\\onedrive\\desktop\\programming\\godot\\circle-of-doom\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|c:\\users\\modre\\onedrive\\desktop\\programming\\godot\\circle-of-doom\\scripts\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\WeaponType.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\WeaponType.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|c:\\users\\modre\\onedrive\\desktop\\programming\\godot\\circle-of-doom\\scripts\\enemytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\enemytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|c:\\users\\modre\\onedrive\\desktop\\programming\\godot\\circle-of-doom\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Weapon.cs",
+              "DocumentMoniker": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Weapon.cs",
+              "RelativeDocumentMoniker": "Scripts\\Weapon.cs",
+              "ToolTip": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Weapon.cs",
+              "RelativeToolTip": "Scripts\\Weapon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T06:15:30.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EnemyType.cs",
+              "DocumentMoniker": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\EnemyType.cs",
+              "RelativeDocumentMoniker": "Scripts\\EnemyType.cs",
+              "ToolTip": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\EnemyType.cs",
+              "RelativeToolTip": "Scripts\\EnemyType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T06:15:07.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeaponType.cs",
+              "DocumentMoniker": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\WeaponType.cs",
+              "RelativeDocumentMoniker": "Scripts\\WeaponType.cs",
+              "ToolTip": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\WeaponType.cs",
+              "RelativeToolTip": "Scripts\\WeaponType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-08T06:13:55.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Enemy.cs",
+              "RelativeDocumentMoniker": "Scripts\\Enemy.cs",
+              "ToolTip": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Enemy.cs",
+              "RelativeToolTip": "Scripts\\Enemy.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwDEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T20:55:26.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Scripts\\Player.cs",
+              "ToolTip": "C:\\Users\\modre\\OneDrive\\Desktop\\Programming\\GoDot\\circle-of-doom\\Scripts\\Player.cs",
+              "RelativeToolTip": "Scripts\\Player.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T06:56:51.642Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

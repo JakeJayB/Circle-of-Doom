@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7loo25y7k3xh"]
+
+[ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
+[ext_resource type="PackedScene" uid="uid://c82gqv78506w2" path="res://Prefabs/player.tscn" id="1_qqx0k"]
+[ext_resource type="Texture2D" uid="uid://b1duec1n7d2fq" path="res://Images/longsword.png" id="2_c2xkj"]
+[ext_resource type="PackedScene" uid="uid://cuohrta3lh7wt" path="res://Prefabs/enemy.tscn" id="2_ixa3a"]
+[ext_resource type="Texture2D" uid="uid://dwa62rny1hag7" path="res://Images/Mace.png" id="3_3bpf5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46kra"]
+albedo_color = Color(0.967161, 0, 0.092993, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gxyg7"]
+material = SubResource("StandardMaterial3D_46kra")
+size = Vector2(1, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m2e64"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
+size = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o3dt1"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7.56572, 3.04041)
+shadow_enabled = true
+
+[node name="Fight Scene" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1726, 0, -176.798)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fight Scene"]
+transform = Transform3D(30, 0, 0, 0, 2, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gxyg7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fight Scene"]
+rotation_order = 0
+visible = false
+shape = SubResource("WorldBoundaryShape3D_m2e64")
+
+[node name="Player Pos" type="Node3D" parent="Fight Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -2)
+
+[node name="Enemy Pos" type="Node3D" parent="Fight Scene"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 1.5, 2)
+
+[node name="Main Terrain" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Main Terrain"]
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("PlaneMesh_u5ulb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Terrain"]
+rotation_order = 0
+shape = SubResource("WorldBoundaryShape3D_m2e64")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -560.0
+offset_top = -244.0
+offset_right = 592.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick a Weapon"
+label_settings = SubResource("LabelSettings_o3dt1")
+horizontal_alignment = 1
+
+[node name="BowButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.246528
+anchor_right = 0.246528
+offset_left = -108.0
+offset_top = 224.0
+offset_right = 92.0
+offset_bottom = 424.0
+texture_normal = ExtResource("1_nek8c")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="SwordButton" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_c2xkj")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 224.0
+offset_right = 976.0
+offset_bottom = 424.0
+texture_normal = ExtResource("3_3bpf5")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Player" parent="." instance=ExtResource("1_qqx0k")]
+transform = Transform3D(0.995551, 0, 0, 0, 0.995551, 0, 0, 0, 0.995551, 0.00123167, 3.72547, 3.19333)
+slide_on_ceiling = false
+
+[node name="Enemy" parent="." instance=ExtResource("2_ixa3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37656, 19.1053)
+slide_on_ceiling = false

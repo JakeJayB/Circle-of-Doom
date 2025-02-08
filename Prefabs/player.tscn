@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://c82gqv78506w2"]
+
+[ext_resource type="PackedScene" path="res://Prefabs/camera_3d.tscn" id="1_e3uuy"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_f0lug"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hxsk"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_88gce"]
+material = SubResource("StandardMaterial3D_2hxsk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auquq"]
+albedo_color = Color(0.200971, 0.585276, 0.953993, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tvhod"]
+material = SubResource("StandardMaterial3D_auquq")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xkokb"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_f0lug")
+
+[node name="Glasses" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.683989, 0, 0, 0, 0.258899, 0, 0, 0, 0.407669, 0, 0.545833, 0.338741)
+mesh = SubResource("BoxMesh_88gce")
+
+[node name="Capsule" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tvhod")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xkokb")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.702917, 0)
+
+[node name="Camera3D" parent="Neck" instance=ExtResource("1_e3uuy")]
+transform = Transform3D(-1, 0, -8.74228e-08, -2.04025e-08, 0.972386, 0.233377, 8.50087e-08, 0.233377, -0.972386, 0, 1.03304, -3.31211)
+visible = true
+fov = 60.0

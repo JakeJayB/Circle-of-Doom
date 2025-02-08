@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4tlttjrlyk88"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4o6n3"]
+sky_top_color = Color(0.185014, 0.457703, 0.737963, 1)
+sky_horizon_color = Color(0.891779, 0.539861, 0.569337, 1)
+ground_bottom_color = Color(0.28607, 0.400496, 0.548101, 1)
+
+[sub_resource type="Sky" id="Sky_lp0pd"]
+sky_material = SubResource("ProceduralSkyMaterial_4o6n3")
+
+[sub_resource type="Environment" id="Environment_0wv36"]
+background_mode = 2
+sky = SubResource("Sky_lp0pd")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yw65c"]
+exposure_multiplier = 1.465
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0.000391116, -0.000149803, -0.000391117, 1, -6.78885e-06, 0.000149801, 6.84744e-06, 1, -0.115266, 3.41485, 14.457)
+visible = false
+environment = SubResource("Environment_0wv36")
+attributes = SubResource("CameraAttributesPractical_yw65c")
+fov = 37.8493
