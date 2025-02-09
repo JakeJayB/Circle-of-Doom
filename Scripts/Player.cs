@@ -6,14 +6,14 @@ public partial class Player : CharacterBody3D
     private Vector3 velocity;
     private const float Speed = 5.0f;
     private const float JumpVelocity = 4.5f;
-    private float camSensitivity = 0.006f;
-    private float cameraPitch = 0.0f;
+    private const float camSensitivity = 0.006f;
+    //private float cameraPitch = 0.0f;
     private bool canMove = true;
 
     private Node3D neck;
 	private Camera3D camera;
-    private Node3D battleScene;
-    private Weapon weapon = null;
+    private Node3D battlePos;
+    public Weapon weapon = new Weapon();
 
 
     public override void _Ready()
@@ -21,8 +21,7 @@ public partial class Player : CharacterBody3D
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		neck = GetNode<Node3D>("Neck");
 		camera = GetNode<Camera3D>("Neck/Camera3D");
-        battleScene = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
-
+        battlePos = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
     }
 
     public override void _Input(InputEvent @event)
@@ -92,9 +91,11 @@ public partial class Player : CharacterBody3D
         velocity.Z = 0;
         Velocity = velocity;
 
-        Position = battleScene.GlobalPosition;
-        //neck.Rotation = battleScene.Rotation;
-        Rotation = battleScene.GlobalRotation;
+        Position = battlePos.GlobalPosition;
+        //neck.Rotation = battlePos.Rotation;
+        Rotation = battlePos.GlobalRotation;
 
     }
+
+    
 }

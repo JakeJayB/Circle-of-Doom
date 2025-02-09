@@ -5,5 +5,6 @@ public enum WeaponType
 {
     LONGSWORD,
     MACE,
-    BOW
+    BOW,
+    NONE
 }

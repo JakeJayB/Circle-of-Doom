@@ -14,19 +14,34 @@ public partial class Enemy : CharacterBody3D
 
 	private EnemyType enemyType;
 	private Player player;
-	private Node3D battleScene;
+	private FightScene fightScene;
+	private Node3D battlePos;
 
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public static EnemyType GetEnemy(int dieRoll)
 	{
-		Array enemyTypes = Enum.GetValues(typeof(EnemyType));
-		Random random = new Random();
-		enemyType = (EnemyType) enemyTypes.GetValue(random.Next(enemyTypes.Length));
+		if (dieRoll == 1 || dieRoll == 2)
+			return EnemyType.DINO;
+		else if (dieRoll == 3 || dieRoll == 4)
+			return EnemyType.FROG;
+		else if (dieRoll == 5 || dieRoll == 6)
+            return EnemyType.TURTLE;
+        else
+			GD.PrintErr("Invalid die roll. Default to Dino");
+			return EnemyType.DINO;
+
+    }
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+	{
+		enemyType = EnemyType.NONE;
 		velocity = new Vector3(0, 0, 0);
 		player = GetParent().GetNode<Player>("Player");
-        battleScene = GetParent().GetNode<Node3D>("Fight Scene/Enemy Pos");
-	}
+        fightScene = GetParent().GetNode<FightScene>("Fight Scene");
+
+		// Gets "Enemy Pos" Node3D from the Fight Scene.
+        battlePos = GetParent().GetNode<Node3D>("Fight Scene/Enemy Pos");
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -45,7 +60,8 @@ public partial class Enemy : CharacterBody3D
 		float distance = Position.DistanceTo(player.Position);
 		if (distance < attackRange)
 		{
-			TeleportToBattle();
+			fightScene.StartCoroutine(player, this);
+            TeleportToBattle();
 			player.TeleportToBattle();
 			return;
 		}
@@ -76,7 +92,12 @@ public partial class Enemy : CharacterBody3D
         velocity.Z = 0;
         Velocity = velocity;
 
-        Position = battleScene.GlobalPosition;
-		Rotation = battleScene.Rotation;
+        Position = battlePos.GlobalPosition;
+		Rotation = battlePos.Rotation;
 	}
+
+    public void AssignEnemy(EnemyType enemy)
+    {
+        this.enemyType = enemy;
+    }
 }

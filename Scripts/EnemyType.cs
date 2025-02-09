@@ -5,5 +5,6 @@ public enum EnemyType
 {
     DINO, 
     FROG,
-    TURTLE
+    TURTLE,
+    NONE
 }

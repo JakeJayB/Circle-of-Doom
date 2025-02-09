@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=15 format=3 uid="uid://b7loo25y7k3xh"]
 
+[ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
+[ext_resource type="Script" path="res://Scripts/UIManager.cs" id="1_qplbv"]
 [ext_resource type="PackedScene" uid="uid://c82gqv78506w2" path="res://Prefabs/player.tscn" id="1_qqx0k"]
 [ext_resource type="Texture2D" uid="uid://b1duec1n7d2fq" path="res://Images/longsword.png" id="2_c2xkj"]
 [ext_resource type="PackedScene" uid="uid://cuohrta3lh7wt" path="res://Prefabs/enemy.tscn" id="2_ixa3a"]
@@ -18,6 +20,16 @@ size = Vector2(1, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
 size = Vector2(1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtw5q"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_o3dt1"]
 font_size = 61
 outline_size = 5
@@ -31,6 +43,7 @@ shadow_enabled = true
 
 [node name="Fight Scene" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1726, 0, -176.798)
+script = ExtResource("1_hby23")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Fight Scene"]
 transform = Transform3D(30, 0, 0, 0, 2, 0, 0, 0, 30, 0, 0, 0)
@@ -50,7 +63,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 1.
 [node name="Main Terrain" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Main Terrain"]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(49.9883, -0.0191334, -0.502381, 0.965711, 0.999648, 0.910655, 0.484778, -0.0184029, 49.9892, 0.0353113, 0.0310273, -0.0386055)
 mesh = SubResource("PlaneMesh_u5ulb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Main Terrain"]
@@ -64,17 +77,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qplbv")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="DeterminingEnemyText" type="Label" parent="Control" groups=["DetermineEnemy"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
+offset_left = -576.0
 offset_top = -244.0
-offset_right = 592.0
+offset_right = 576.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Determining Enemy 
+Rolling a Die:"
+label_settings = SubResource("LabelSettings_1n03f")
+horizontal_alignment = 1
+
+[node name="DieNumberText" type="Label" parent="Control" groups=["DieRoll"]]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -92.0
+offset_right = 576.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N/A"
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="YourEnemyText" type="Label" parent="Control" groups=["DieRoll"]]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -4.0
+offset_right = 576.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Enemy is a "
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="PickWeaponText" type="Label" parent="Control" groups=["PickWeapon"]]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -244.0
+offset_right = 576.0
 offset_bottom = -160.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -82,7 +152,8 @@ text = "Pick a Weapon"
 label_settings = SubResource("LabelSettings_o3dt1")
 horizontal_alignment = 1
 
-[node name="BowButton" type="TextureButton" parent="Control"]
+[node name="BowButton" type="TextureButton" parent="Control" groups=["PickWeapon"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.246528
@@ -94,9 +165,9 @@ offset_bottom = 424.0
 texture_normal = ExtResource("1_nek8c")
 ignore_texture_size = true
 stretch_mode = 4
-metadata/_edit_use_anchors_ = true
 
-[node name="SwordButton" type="TextureButton" parent="Control"]
+[node name="SwordButton" type="TextureButton" parent="Control" groups=["PickWeapon"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -112,9 +183,9 @@ grow_vertical = 2
 texture_normal = ExtResource("2_c2xkj")
 ignore_texture_size = true
 stretch_mode = 4
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureButton" type="TextureButton" parent="Control"]
+[node name="MaceButton" type="TextureButton" parent="Control" groups=["PickWeapon"]]
+visible = false
 layout_mode = 0
 offset_left = 776.0
 offset_top = 224.0
@@ -131,3 +202,7 @@ slide_on_ceiling = false
 [node name="Enemy" parent="." instance=ExtResource("2_ixa3a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37656, 19.1053)
 slide_on_ceiling = false
+
+[connection signal="pressed" from="Control/BowButton" to="Control" method="WeaponSelect" binds= ["Bow"]]
+[connection signal="pressed" from="Control/SwordButton" to="Control" method="WeaponSelect" binds= ["Sword"]]
+[connection signal="pressed" from="Control/MaceButton" to="Control" method="WeaponSelect" binds= ["Mace"]]
