@@ -80,9 +80,29 @@ public partial class UIManager : Control
 
     public void EnemyDetermined(int dieRoll, string enemyName)
     {
-        GetNode<Label>("DieNumberText").Text = dieRoll.ToString();
-        GetNode<Label>("YourEnemyText").Text += enemyName;
-        DisplayUI("DieRoll");
+        GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
+        GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
+        DisplayUI("DieEnemyRoll");
     }
 
+
+    public void PlayerAttackDetermined(int roll1, int roll2, float finalAttack)
+    {
+        GetNode<Label>("PlayerAttack/DiePlayerAttackText").Text = roll1.ToString();
+        GetNode<Label>("PlayerAttack/DiePlayerAttackText2").Text = roll2.ToString();
+        GetNode<Label>("PlayerAttack/DamageDealtText").Text = "Damage Dealt: " + finalAttack.ToString();
+        DisplayUI("DiePlayerAttackRoll");
+    }
+
+    public void HideDetermineEnemyUI()
+    {
+        HideUI("DetermineEnemy");
+        HideUI("DieEnemyRoll");
+    }
+
+    public void HidePlayerAttackUI()
+    {
+        HideUI("PlayerAttack");
+        HideUI("DiePlayerAttackRoll");
+    }
 }

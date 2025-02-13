@@ -8,6 +8,7 @@ public partial class Player : CharacterBody3D
     private const float JumpVelocity = 4.5f;
     private const float camSensitivity = 0.006f;
     //private float cameraPitch = 0.0f;
+    private float health = 20.0f;
     private bool canMove = true;
 
     private Node3D neck;
@@ -97,5 +98,9 @@ public partial class Player : CharacterBody3D
 
     }
 
-    
+    public void TakeDamage(float damage)
+    {
+        this.health -= damage;
+        GD.Print("Player Health: " + health);
+    }
 }

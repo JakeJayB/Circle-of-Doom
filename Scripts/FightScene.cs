@@ -37,24 +37,39 @@ public partial class FightScene : StaticBody3D
         await ToSignal(GetTree().CreateTimer(2), "timeout");
 
         // Randomly determine the enemy
-        Random random = new Random();
-        int dieRoll = random.Next(1, 7);
+        int dieRoll = RollDice();
         enemy.AssignEnemy(Enemy.GetEnemy(dieRoll));
         uiManager.EnemyDetermined(dieRoll, Enemy.GetEnemy(dieRoll).ToString());
+        player.weapon.AssignDamageType(enemy.enemyType);
 
         // await for a couple of seconds
         await ToSignal(GetTree().CreateTimer(4), "timeout");
-        uiManager.HideUI("DetermineEnemy");
-        uiManager.HideUI("DieRoll");
+        uiManager.HideDetermineEnemyUI();
 
-        while (false) { }
+        while (true) 
+        {
+            // Player Attacks Enemy
+            uiManager.DisplayUI("PlayerAttack");
+            await ToSignal(GetTree().CreateTimer(2), "timeout");
+            int attackRoll1 = RollDice(); int attackRoll2 = RollDice();
+            float finalAtack = player.weapon.Attack(attackRoll1, attackRoll2);
+            enemy.TakeDamage(finalAtack);
+            uiManager.PlayerAttackDetermined(attackRoll1, attackRoll2, finalAtack);
+            await ToSignal(GetTree().CreateTimer(4), "timeout");
+            uiManager.HidePlayerAttackUI();
+
+            // Enemy Attacks Player
+
+            // Player Dodges Enemey
+            break;
+        }
         ResetEverything();
     }
 
-    // This method will be called when the player selects a weapon
-    public void OnWeaponSelected()
+    private int RollDice()
     {
-        weaponSelectedTaskSource?.TrySetResult(true);
+        Random random = new Random();
+        return random.Next(1, 7);
     }
 
 
@@ -63,5 +78,11 @@ public partial class FightScene : StaticBody3D
         this.player = null;
         this.enemy = null;
         weaponSelectedTaskSource = null;
+    }
+
+    // This method will be called when the player selects a weapon
+    public void OnWeaponSelected()
+    {
+        weaponSelectedTaskSource?.TrySetResult(true);
     }
 }

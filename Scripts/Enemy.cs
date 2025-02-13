@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Enemy : CharacterBody3D
 {
@@ -9,15 +10,25 @@ public partial class Enemy : CharacterBody3D
 	private float jumpVelocity = 2.0f;
 	private float pursueRange = 10.0f;
 	private float attackRange = 1.5f;
-	private float health = 10.0f;
+	private float health = 30.0f;
 	private bool canMove = true;
 
-	private EnemyType enemyType;
+	public EnemyType enemyType;
 	private Player player;
 	private FightScene fightScene;
 	private Node3D battlePos;
 
-	public static EnemyType GetEnemy(int dieRoll)
+
+    public enum EnemyType
+    {
+        DINO,
+        FROG,
+        TURTLE,
+        NONE
+    }
+
+
+    public static EnemyType GetEnemy(int dieRoll)
 	{
 		if (dieRoll == 1 || dieRoll == 2)
 			return EnemyType.DINO;
@@ -100,4 +111,10 @@ public partial class Enemy : CharacterBody3D
     {
         this.enemyType = enemy;
     }
+
+	public void TakeDamage(float damage)
+	{
+		this.health -= damage;
+		GD.Print("Enemy Health: " + health);
+	}
 }

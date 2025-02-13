@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=17 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -20,12 +20,22 @@ size = Vector2(1, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
 size = Vector2(1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
+[sub_resource type="LabelSettings" id="LabelSettings_od1tu"]
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_eg6e8"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_wtw5q"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
@@ -63,7 +73,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 1.
 [node name="Main Terrain" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Main Terrain"]
-transform = Transform3D(49.9883, -0.0191334, -0.502381, 0.965711, 0.999648, 0.910655, 0.484778, -0.0184029, 49.9892, 0.0353113, 0.0310273, -0.0386055)
+transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("PlaneMesh_u5ulb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Main Terrain"]
@@ -79,18 +89,106 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qplbv")
 
-[node name="DeterminingEnemyText" type="Label" parent="Control" groups=["DetermineEnemy"]]
+[node name="PlayerAttack" type="CanvasGroup" parent="Control" groups=["PlayerAttack"]]
 visible = false
-layout_mode = 1
+
+[node name="Player Attack" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -244.0
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player Attack: Rolling Two Dice"
+label_settings = SubResource("LabelSettings_od1tu")
+horizontal_alignment = 1
+
+[node name="Advantage_Disadvantage" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 120.0
+offset_right = 1152.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Advantage: Highest Dice | Disadvantage: Lowest Dice
+"
+label_settings = SubResource("LabelSettings_eg6e8")
+horizontal_alignment = 1
+
+[node name="DiePlayerAttackText" type="Label" parent="Control/PlayerAttack" groups=["DiePlayerAttackRoll"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 464.0
+offset_top = 280.0
 offset_right = 576.0
-offset_bottom = -160.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N/A"
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="DiePlayerAttackText2" type="Label" parent="Control/PlayerAttack" groups=["DiePlayerAttackRoll"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 576.0
+offset_top = 280.0
+offset_right = 688.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N/A"
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="DamageDealtText" type="Label" parent="Control/PlayerAttack" groups=["DiePlayerAttackRoll"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 440.0
+offset_top = 408.0
+offset_right = 712.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N/A"
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="DetermineEnemy" type="CanvasGroup" parent="Control" groups=["DetermineEnemy"]]
+visible = false
+
+[node name="DeterminingEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DetermineEnemy"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Determining Enemy 
@@ -98,36 +196,32 @@ Rolling a Die:"
 label_settings = SubResource("LabelSettings_1n03f")
 horizontal_alignment = 1
 
-[node name="DieNumberText" type="Label" parent="Control" groups=["DieRoll"]]
+[node name="DieEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -92.0
-offset_right = 576.0
-offset_bottom = -8.0
+offset_top = 232.0
+offset_right = 1152.0
+offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "N/A"
 label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
-[node name="YourEnemyText" type="Label" parent="Control" groups=["DieRoll"]]
+[node name="YourEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
 visible = false
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -4.0
-offset_right = 576.0
-offset_bottom = 80.0
+offset_top = 320.0
+offset_right = 1152.0
+offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Your Enemy is a "
