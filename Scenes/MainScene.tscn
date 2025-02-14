@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=20 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -20,13 +20,8 @@ size = Vector2(1, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
 size = Vector2(1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_od1tu"]
+[sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
 font_size = 61
-outline_size = 5
-outline_color = Color(0.286936, 0.308616, 0.902476, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_eg6e8"]
-font_size = 30
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
@@ -35,8 +30,28 @@ font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
+[sub_resource type="LabelSettings" id="LabelSettings_od1tu"]
 font_size = 61
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lpwcw"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gkc15"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jasdq"]
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eg6e8"]
+font_size = 30
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
@@ -89,10 +104,112 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qplbv")
 
+[node name="PlayerDodge" type="CanvasGroup" parent="Control" groups=["PlayerDodge"]]
+visible = false
+
+[node name="DeterminingDodgeText" type="Label" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player Dodge: Rolling a Die"
+label_settings = SubResource("LabelSettings_1n03f")
+horizontal_alignment = 1
+
+[node name="DieDodgeText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 231.0
+offset_right = 1152.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "N/A"
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="DodgeResultText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 320.0
+offset_right = 1152.0
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dodge Result:  "
+label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="EnemyAttack" type="CanvasGroup" parent="Control" groups=["EnemyAttack"]]
+
+[node name="EnemyAttack" type="Label" parent="Control/EnemyAttack" groups=["EnemyAttack"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 40.0
+offset_right = 1152.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemy Attack: Rolling Two Dice"
+label_settings = SubResource("LabelSettings_od1tu")
+horizontal_alignment = 1
+
+[node name="DieEnemyAttackText" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+offset_left = 464.0
+offset_top = 304.0
+offset_right = 576.0
+offset_bottom = 388.0
+text = "N/A"
+label_settings = SubResource("LabelSettings_lpwcw")
+horizontal_alignment = 1
+
+[node name="DieEnemyAttackText2" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+offset_left = 575.0
+offset_top = 304.0
+offset_right = 687.0
+offset_bottom = 388.0
+text = "N/A"
+label_settings = SubResource("LabelSettings_gkc15")
+horizontal_alignment = 1
+
+[node name="DamageDealtText" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = 416.0
+offset_right = 933.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Damage Dealt to Player:"
+label_settings = SubResource("LabelSettings_jasdq")
+horizontal_alignment = 1
+
 [node name="PlayerAttack" type="CanvasGroup" parent="Control" groups=["PlayerAttack"]]
 visible = false
 
-[node name="Player Attack" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+[node name="PlayerAttack" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -191,8 +308,7 @@ offset_right = 1152.0
 offset_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Determining Enemy 
-Rolling a Die:"
+text = "Enemy Selection: Rolling a Die:"
 label_settings = SubResource("LabelSettings_1n03f")
 horizontal_alignment = 1
 

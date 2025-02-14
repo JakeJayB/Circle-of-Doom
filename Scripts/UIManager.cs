@@ -9,19 +9,34 @@ public partial class UIManager : Control
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		var ui = GetChildren();
-		
-		foreach(var node in ui)
+		var uiGroups = GetChildren();
+
+
+
+        foreach (Node group in uiGroups)
         {
-            CanvasItem item = (CanvasItem)node;
-			item.Visible = false;
+            CanvasItem item;
+
+            foreach (Node node in group.GetChildren())
+            {
+                item = (CanvasItem)node;
+			    item.Visible = false;
+            }
+            item = (CanvasItem)group;
+            item.Visible = false;
         }
 
         player = GetParent().GetNode<Player>("Player");
         fightScene = GetParent().GetNode<FightScene>("Fight Scene");
     }
 
-	public void DisplayUI(string uiGroup)
+
+    public override void _PhysicsProcess(double delta)
+    {
+        GD.Print(GetNode<Label>("EnemyAttack/DieEnemyAttackText").GetGroups());
+    }
+
+    public void DisplayUI(string uiGroup)
     {
 		var ui = GetTree().GetNodesInGroup(uiGroup);
 
@@ -90,8 +105,23 @@ public partial class UIManager : Control
     {
         GetNode<Label>("PlayerAttack/DiePlayerAttackText").Text = roll1.ToString();
         GetNode<Label>("PlayerAttack/DiePlayerAttackText2").Text = roll2.ToString();
-        GetNode<Label>("PlayerAttack/DamageDealtText").Text = "Damage Dealt: " + finalAttack.ToString();
+        GetNode<Label>("PlayerAttack/DamageDealtText").Text = "Damage Dealt to Enemy: " + finalAttack.ToString();
         DisplayUI("DiePlayerAttackRoll");
+    }
+
+    public void EnemyAttackDetermined(int roll1, int roll2, float finalAttack)
+    {
+        GetNode<Label>("EnemyAttack/DieEnemyAttackText").Text = roll1.ToString();
+        GetNode<Label>("EnemyAttack/DieEnemyAttackText2").Text = roll2.ToString();
+        GetNode<Label>("EnemyAttack/DamageDealtText").Text = "Damage Dealt to Player: " + finalAttack.ToString();
+        DisplayUI("DieEnemyAttackRoll");
+    }
+
+    public void PlayerDodgeDetermined(int roll, string dodgeResult)
+    {
+        GetNode<Label>("PlayerDodge/DieDodgeText").Text = roll.ToString();
+        GetNode<Label>("PlayerDodge/DodgeResultText").Text = "Player Dodge Result: " + dodgeResult;
+        DisplayUI("DieDodgeRoll");
     }
 
     public void HideDetermineEnemyUI()
@@ -104,5 +134,17 @@ public partial class UIManager : Control
     {
         HideUI("PlayerAttack");
         HideUI("DiePlayerAttackRoll");
+    }
+
+    public void HideEnemyAttackUI()
+    {
+        HideUI("EnemyAttack");
+        HideUI("DieEnemyAttackRoll");
+    }
+
+    public void HidePlayerDodgeUI()
+    {
+        HideUI("PlayerDodge");
+        HideUI("DieDodgeRoll");
     }
 }

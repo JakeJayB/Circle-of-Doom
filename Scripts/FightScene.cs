@@ -22,46 +22,64 @@ public partial class FightScene : StaticBody3D
         Fight();
 	}
 
-	private async void Fight()
+    private async void Fight()
     {
 
-        uiManager.DisplayUI("PickWeapon");
 
         //await for player to select weapon UI button
+        uiManager.DisplayUI("PickWeapon");
         weaponSelectedTaskSource = new TaskCompletionSource<bool>();
         await weaponSelectedTaskSource.Task;
 
+        // Randomly determine the enemy. await for 2 seconds
         uiManager.DisplayUI("DetermineEnemy");
-
-        // await for a couple of seconds
         await ToSignal(GetTree().CreateTimer(2), "timeout");
 
-        // Randomly determine the enemy
         int dieRoll = RollDice();
         enemy.AssignEnemy(Enemy.GetEnemy(dieRoll));
         uiManager.EnemyDetermined(dieRoll, Enemy.GetEnemy(dieRoll).ToString());
         player.weapon.AssignDamageType(enemy.enemyType);
 
-        // await for a couple of seconds
+        // await for 4 of seconds
         await ToSignal(GetTree().CreateTimer(4), "timeout");
         uiManager.HideDetermineEnemyUI();
 
-        while (true) 
+        while (!player.isDead && !enemy.isDead) 
         {
+            int attackRoll1, attackRoll2, dodgeRoll;
+            float finalAttack;
+            string dodgeResult;
+
             // Player Attacks Enemy
             uiManager.DisplayUI("PlayerAttack");
             await ToSignal(GetTree().CreateTimer(2), "timeout");
-            int attackRoll1 = RollDice(); int attackRoll2 = RollDice();
-            float finalAtack = player.weapon.Attack(attackRoll1, attackRoll2);
-            enemy.TakeDamage(finalAtack);
-            uiManager.PlayerAttackDetermined(attackRoll1, attackRoll2, finalAtack);
+            attackRoll1 = RollDice();  attackRoll2 = RollDice();
+            finalAttack = player.Attack(attackRoll1, attackRoll2);
+            enemy.TakeDamage(finalAttack);
+            uiManager.PlayerAttackDetermined(attackRoll1, attackRoll2, finalAttack);
             await ToSignal(GetTree().CreateTimer(4), "timeout");
             uiManager.HidePlayerAttackUI();
+            //await ToSignal(GetTree().CreateTimer(2), "timeout");
 
             // Enemy Attacks Player
+            uiManager.DisplayUI("EnemyAttack");
+            await ToSignal(GetTree().CreateTimer(2), "timeout");
+            attackRoll1 = RollDice(); attackRoll2 = RollDice();
+            finalAttack = enemy.Attack(attackRoll1, attackRoll2);
+            player.TakeDamage(finalAttack);
+            uiManager.EnemyAttackDetermined(attackRoll1, attackRoll2, finalAttack);
+            await ToSignal(GetTree().CreateTimer(4), "timeout");
+            uiManager.HideEnemyAttackUI();
+            //await ToSignal(GetTree().CreateTimer(2), "timeout");
 
             // Player Dodges Enemey
-            break;
+            uiManager.DisplayUI("PlayerDodge");
+            await ToSignal(GetTree().CreateTimer(2), "timeout");
+            dodgeRoll = RollDice();
+            dodgeResult = player.Dodge(dodgeRoll, finalAttack);
+            uiManager.PlayerDodgeDetermined(dodgeRoll, dodgeResult);
+            await ToSignal(GetTree().CreateTimer(4), "timeout");
+            uiManager.HidePlayerDodgeUI();
         }
         ResetEverything();
     }

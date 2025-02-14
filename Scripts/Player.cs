@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Threading.Channels;
+using static Enemy;
+
 
 public partial class Player : CharacterBody3D
 {
@@ -9,6 +12,7 @@ public partial class Player : CharacterBody3D
     private const float camSensitivity = 0.006f;
     //private float cameraPitch = 0.0f;
     private float health = 20.0f;
+    public bool isDead = false;
     private bool canMove = true;
 
     private Node3D neck;
@@ -53,7 +57,6 @@ public partial class Player : CharacterBody3D
 
             if (!canMove)
                 Velocity = velocity;
-            
         }
 
         if (!canMove) return;
@@ -98,9 +101,49 @@ public partial class Player : CharacterBody3D
 
     }
 
+    public float Attack(int roll1, int roll2)
+    {
+        return weapon.Attack(roll1, roll2);
+    }
+
+    public string Dodge(int dodgeRoll, float prevAttack)
+    {
+        if (dodgeRoll == 1 || dodgeRoll == 2)
+        {
+            GD.Print("Player Health Now: " + health);
+            return "Full Damage...";
+        }
+        else if (dodgeRoll == 3 || dodgeRoll == 4)
+        {
+            prevAttack /= 2;
+            health += prevAttack;
+            GD.Print("Player Health Now: " + health);
+            return "Half Damage";
+        }
+        else if (dodgeRoll == 5 || dodgeRoll == 6)
+        {
+            health += prevAttack;
+            GD.Print("Player Health Now: " + health);
+            return "Full Dodge!";
+        }
+        else
+        {
+            GD.PrintErr("Player: Invalid dodge die roll. Default to Full Damage");
+            GD.Print("Player Health Now: " + health);
+            return "Full Damage...";
+        }
+            
+    }
+
     public void TakeDamage(float damage)
     {
         this.health -= damage;
+
+        if (this.health <= 0)
+        {
+            this.health = 0;
+            isDead = true;
+        }
         GD.Print("Player Health: " + health);
     }
 }
