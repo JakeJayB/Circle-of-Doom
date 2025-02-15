@@ -11,7 +11,8 @@ public partial class Player : CharacterBody3D
     private const float JumpVelocity = 4.5f;
     private const float camSensitivity = 0.006f;
     //private float cameraPitch = 0.0f;
-    private float health = 20.0f;
+    //private float health = 20.0f;
+    private float health = 10.0f;
     public bool isDead = false;
     private bool canMove = true;
 
@@ -111,18 +112,21 @@ public partial class Player : CharacterBody3D
         if (dodgeRoll == 1 || dodgeRoll == 2)
         {
             GD.Print("Player Health Now: " + health);
+            isPlayerDead();
             return "Full Damage...";
         }
         else if (dodgeRoll == 3 || dodgeRoll == 4)
         {
             prevAttack /= 2;
             health += prevAttack;
+            isPlayerDead();
             GD.Print("Player Health Now: " + health);
             return "Half Damage";
         }
         else if (dodgeRoll == 5 || dodgeRoll == 6)
         {
             health += prevAttack;
+            isPlayerDead();
             GD.Print("Player Health Now: " + health);
             return "Full Dodge!";
         }
@@ -130,20 +134,25 @@ public partial class Player : CharacterBody3D
         {
             GD.PrintErr("Player: Invalid dodge die roll. Default to Full Damage");
             GD.Print("Player Health Now: " + health);
+            isPlayerDead();
             return "Full Damage...";
         }
             
     }
 
+    public bool isPlayerDead()
+    {
+        if (!isDead && health <= 0)
+        {
+            isDead = true;
+            GD.Print("Player is Dead");
+        }
+        return isDead;
+    }
+
     public void TakeDamage(float damage)
     {
-        this.health -= damage;
-
-        if (this.health <= 0)
-        {
-            this.health = 0;
-            isDead = true;
-        }
+        health -= damage;
         GD.Print("Player Health: " + health);
     }
 }

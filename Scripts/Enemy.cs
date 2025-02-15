@@ -10,7 +10,9 @@ public partial class Enemy : CharacterBody3D
 	private float jumpVelocity = 2.0f;
 	private float pursueRange = 10.0f;
 	private float attackRange = 1.5f;
-	private float health = 30.0f;
+    //private float health = 30.0f;
+    private float health = 15.0f;
+
     public bool isDead = false;
     private bool canMove = true;
 
@@ -121,16 +123,20 @@ public partial class Enemy : CharacterBody3D
     public void TakeDamage(float damage)
 	{
 		this.health -= damage;
-
-		if(this.health <= 0)
-		{
-            this.health = 0;
-            isDead = true;
-        }
 		GD.Print("Enemy Health: " + health);
 	}
 
-	public void DestroyEnemy()
+	public bool isEnemyDead()
+    {
+		if(!isDead && this.health <= 0)
+		{
+            isDead = true;
+			GD.Print("Enemy is Dead");
+		}
+        return isDead;
+    }
+
+    public void DestroyEnemy()
     {
         this.Visible = false;
 		QueueFree();

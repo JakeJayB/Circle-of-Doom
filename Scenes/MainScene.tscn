@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=22 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b1duec1n7d2fq" path="res://Images/longsword.png" id="2_c2xkj"]
 [ext_resource type="PackedScene" uid="uid://cuohrta3lh7wt" path="res://Prefabs/enemy.tscn" id="2_ixa3a"]
 [ext_resource type="Texture2D" uid="uid://dwa62rny1hag7" path="res://Images/Mace.png" id="3_3bpf5"]
+[ext_resource type="FontFile" uid="uid://bo0wvt5y36lof" path="res://Fonts/Pixelme.ttf" id="3_xhfq4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46kra"]
 albedo_color = Color(0.967161, 0, 0.092993, 1)
@@ -21,41 +22,55 @@ size = Vector2(1, 1)
 size = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_eg6e8"]
+font = ExtResource("3_xhfq4")
+font_size = 30
+outline_size = 5
+outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_wtw5q"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_od1tu"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lpwcw"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286275, 0.309804, 0.901961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gkc15"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286275, 0.309804, 0.901961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jasdq"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286275, 0.309804, 0.901961, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_eg6e8"]
-font_size = 30
+[sub_resource type="LabelSettings" id="LabelSettings_vj1cl"]
+font = ExtResource("3_xhfq4")
+font_size = 45
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o3dt1"]
+font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
@@ -116,11 +131,49 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_top = 40.0
 offset_right = 1152.0
-offset_bottom = 211.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Player Dodge: Rolling a Die"
 label_settings = SubResource("LabelSettings_1n03f")
+horizontal_alignment = 1
+
+[node name="PlayerDodgeButton" type="Button" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360.0
+offset_top = 288.0
+offset_right = 793.0
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.584105, 0.631308, 0.971998, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_xhfq4")
+theme_override_font_sizes/font_size = 40
+text = "Click to Roll a Die"
+
+[node name="DodgeRollDieOptions" type="Label" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 408.0
+offset_right = 1152.0
+offset_bottom = 541.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Roll Die:
+1-2: Full Damage 
+3-4 Half Damage 
+5-6 Full Dodge"
+label_settings = SubResource("LabelSettings_eg6e8")
 horizontal_alignment = 1
 
 [node name="DieDodgeText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
@@ -156,6 +209,7 @@ label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="EnemyAttack" type="CanvasGroup" parent="Control" groups=["EnemyAttack"]]
+visible = false
 
 [node name="EnemyAttack" type="Label" parent="Control/EnemyAttack" groups=["EnemyAttack"]]
 anchors_preset = 8
@@ -210,7 +264,6 @@ horizontal_alignment = 1
 visible = false
 
 [node name="PlayerAttack" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -225,20 +278,39 @@ text = "Player Attack: Rolling Two Dice"
 label_settings = SubResource("LabelSettings_od1tu")
 horizontal_alignment = 1
 
-[node name="Advantage_Disadvantage" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
-visible = false
+[node name="PlayerAttackButton" type="Button" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 120.0
-offset_right = 1152.0
-offset_bottom = 215.0
+offset_left = 360.0
+offset_top = 288.0
+offset_right = 793.0
+offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Advantage: Highest Dice | Disadvantage: Lowest Dice
-"
+theme_override_colors/font_pressed_color = Color(0.584105, 0.631308, 0.971998, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_xhfq4")
+theme_override_font_sizes/font_size = 40
+text = "Click to Roll Two Dice"
+
+[node name="AttackRollDieOptions" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 404.0
+offset_right = 1152.0
+offset_bottom = 537.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Damage by Damage Type:
+Advantage:  Highest Dice
+Neutral:  Average Dice
+Disadvantage:  Lowest Dice"
 label_settings = SubResource("LabelSettings_eg6e8")
 horizontal_alignment = 1
 
@@ -289,15 +361,13 @@ offset_right = 712.0
 offset_bottom = 492.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "N/A"
+text = "Damage Dealt:"
 label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="DetermineEnemy" type="CanvasGroup" parent="Control" groups=["DetermineEnemy"]]
-visible = false
 
 [node name="DeterminingEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DetermineEnemy"]]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -313,7 +383,6 @@ label_settings = SubResource("LabelSettings_1n03f")
 horizontal_alignment = 1
 
 [node name="DieEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -329,7 +398,6 @@ label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="YourEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -342,6 +410,21 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Your Enemy is a "
 label_settings = SubResource("LabelSettings_wtw5q")
+horizontal_alignment = 1
+
+[node name="DamageTypeText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 408.0
+offset_right = 1152.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Damage Type"
+label_settings = SubResource("LabelSettings_vj1cl")
 horizontal_alignment = 1
 
 [node name="PickWeaponText" type="Label" parent="Control" groups=["PickWeapon"]]
@@ -413,6 +496,8 @@ slide_on_ceiling = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37656, 19.1053)
 slide_on_ceiling = false
 
+[connection signal="pressed" from="Control/PlayerDodge/PlayerDodgeButton" to="Control" method="PlayerDodgeButton"]
+[connection signal="pressed" from="Control/PlayerAttack/PlayerAttackButton" to="Control" method="PlayerAttackButton"]
 [connection signal="pressed" from="Control/BowButton" to="Control" method="WeaponSelect" binds= ["Bow"]]
 [connection signal="pressed" from="Control/SwordButton" to="Control" method="WeaponSelect" binds= ["Sword"]]
 [connection signal="pressed" from="Control/MaceButton" to="Control" method="WeaponSelect" binds= ["Mace"]]

@@ -50,19 +50,30 @@ public partial class Weapon : Node
 		this.weapon = weapon;
 	}
 
-    public void AssignDamageType(Enemy.EnemyType enemyType)
+    public string AssignDamageType(Enemy.EnemyType enemyType)
     {
         Enemy.EnemyType advantage = Advantage[this.weapon];
         Enemy.EnemyType disadvantage = Disadvantage[this.weapon];
 
         if (advantage == enemyType)
+        {
             this.damage = DamageType.ADVANTAGE;
+            GD.Print("Weapon Damage Type: " + this.damage);
+            return "Advantage :)";
+        }
         else if (disadvantage == enemyType)
+        { 
             this.damage = DamageType.DISADVANTAGE;
+            GD.Print("Weapon Damage Type: " + this.damage);
+            return "Disadvantage :(";
+        }
         else
+        {
             this.damage = DamageType.NEUTRAL;
+            GD.Print("Weapon Damage Type: " + this.damage);
+            return "Neutral :|";
+        }
 
-        GD.Print("Weapon Damage Type: " + this.damage);
     }
 
     public float Attack(int roll1, int roll2)

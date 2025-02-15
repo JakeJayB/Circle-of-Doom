@@ -31,14 +31,9 @@ public partial class UIManager : Control
     }
 
 
-    public override void _PhysicsProcess(double delta)
-    {
-        GD.Print(GetNode<Label>("EnemyAttack/DieEnemyAttackText").GetGroups());
-    }
-
     public void DisplayUI(string uiGroup)
     {
-		var ui = GetTree().GetNodesInGroup(uiGroup);
+		Godot.Collections.Array<Node> ui = GetTree().GetNodesInGroup(uiGroup);
 
         if(ui == null)
         {
@@ -46,7 +41,7 @@ public partial class UIManager : Control
             return;
         }
 
-        foreach (var node in ui)
+        foreach (Node node in ui)
         {
             CanvasItem item = (CanvasItem)node;
 			item.Visible = true;
@@ -93,10 +88,25 @@ public partial class UIManager : Control
         HideUI("PickWeapon");
     }
 
-    public void EnemyDetermined(int dieRoll, string enemyName)
+    public void PlayerAttackButton()
+    {
+        GetNode<Label>("PlayerAttack/AttackRollDieOptions").Visible = false;
+        GetNode<Button>("PlayerAttack/PlayerAttackButton").Visible = false;
+        fightScene.OnPlayerRollAttackDie();
+    }
+
+    public void PlayerDodgeButton()
+    {
+        GetNode<Label>("PlayerDodge/DodgeRollDieOptions").Visible = false;
+        GetNode<Button>("PlayerDodge/PlayerDodgeButton").Visible = false;
+        fightScene.OnPlayerRollDodgeDie();
+    }
+
+    public void EnemyDetermined(int dieRoll, string enemyName, string damageType)
     {
         GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
         GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
+        GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage Type to Enemy: " + damageType;
         DisplayUI("DieEnemyRoll");
     }
 
