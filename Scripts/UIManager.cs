@@ -106,10 +106,29 @@ public partial class UIManager : Control
     {
         GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
         GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
-        GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage Type to Enemy: " + damageType;
+        GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage to Enemy: " + damageType;
         DisplayUI("DieEnemyRoll");
     }
 
+    public void UpdateAttackDieOptions(DamageType damageType)
+    {
+        string DieOption = "Damage by Damage Type:\n";
+
+        switch (damageType)
+        {
+            case DamageType.ADVANTAGE:
+                DieOption += "Advantage: Highest Dice Value";
+                break;
+            case DamageType.NEUTRAL:
+                DieOption += "Neutral: Average of Dice Values";
+                break;
+            case DamageType.DISADVANTAGE:
+                DieOption += "Disadvantage: Lowest Dice Value";
+                break;
+        }
+
+        GetNode<Label>("PlayerAttack/AttackRollDieOptions").Text = DieOption;
+    }
 
     public void PlayerAttackDetermined(int roll1, int roll2, float finalAttack)
     {

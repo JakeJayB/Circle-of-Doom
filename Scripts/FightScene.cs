@@ -59,6 +59,7 @@ public partial class FightScene : StaticBody3D
             playerRollDodgeDieTaskSource = new TaskCompletionSource<bool>();
 
             // Player Attacks Enemy
+            uiManager.UpdateAttackDieOptions(player.weapon.damage);
             uiManager.DisplayUI("PlayerAttack");
             await(playerRollAttackDieTaskSource.Task);
             await ToSignal(GetTree().CreateTimer(1), "timeout");
@@ -113,19 +114,11 @@ public partial class FightScene : StaticBody3D
         playerRollDodgeDieTaskSource = null;
     }
 
-    // This method will be called when the player selects a weapon
-    public void OnWeaponSelected()
-    {
-        weaponSelectedTaskSource?.TrySetResult(true);
-    }
-
-    public void OnPlayerRollAttackDie()
-    {
-        playerRollAttackDieTaskSource?.TrySetResult(true);
-    }
-
-    public void OnPlayerRollDodgeDie()
-    {
-        playerRollDodgeDieTaskSource?.TrySetResult(true);
-    }
+    // These methods update the event handlers 
+    public void OnWeaponSelected() => weaponSelectedTaskSource?.TrySetResult(true);
+    
+    public void OnPlayerRollAttackDie() => playerRollAttackDieTaskSource?.TrySetResult(true);
+    
+    public void OnPlayerRollDodgeDie() => playerRollDodgeDieTaskSource?.TrySetResult(true);
+    
 }
