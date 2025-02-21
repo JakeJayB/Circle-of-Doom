@@ -31,6 +31,7 @@ public partial class FightScene : StaticBody3D
         weaponSelectedTaskSource = new TaskCompletionSource<bool>();
 
         //await for player to select weapon UI button
+        uiManager.SetupHealthUI();
         uiManager.DisplayUI("PickWeapon");
         await weaponSelectedTaskSource.Task;
 

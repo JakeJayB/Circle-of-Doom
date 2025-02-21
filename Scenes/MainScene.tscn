@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=33 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -22,19 +22,19 @@ size = Vector2(1, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
 size = Vector2(1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_wtw5q"]
+[sub_resource type="LabelSettings" id="LabelSettings_dqqat"]
 font = ExtResource("3_xhfq4")
 font_size = 25
 outline_size = 5
 outline_color = Color(0, 0.854902, 0.356863, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rt4uf"]
+[sub_resource type="LabelSettings" id="LabelSettings_7rhkk"]
 font = ExtResource("3_xhfq4")
 font_size = 15
 outline_size = 5
 outline_color = Color(0, 0.854902, 0.356863, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_1iyjq"]
+[sub_resource type="LabelSettings" id="LabelSettings_ebvxc"]
 font = ExtResource("3_xhfq4")
 font_size = 18
 outline_size = 5
@@ -44,6 +44,21 @@ outline_color = Color(0, 0.854902, 0.356863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7i8yk"]
 bg_color = Color(0, 0.854865, 0.356171, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c7wfy"]
+font = ExtResource("3_xhfq4")
+font_size = 25
+outline_size = 5
+outline_color = Color(0.945098, 0.109804, 0.0666667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfjss"]
+font = ExtResource("3_xhfq4")
+font_size = 15
+outline_size = 5
+outline_color = Color(0.945098, 0.109804, 0.0666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bcx7"]
+bg_color = Color(0.946047, 0.107994, 0.06572, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1n03f"]
 font = ExtResource("3_xhfq4")
@@ -56,6 +71,18 @@ font = ExtResource("3_xhfq4")
 font_size = 30
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvpme"]
+font = ExtResource("3_xhfq4")
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dfnal"]
+font = ExtResource("3_xhfq4")
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_od1tu"]
 font = ExtResource("3_xhfq4")
@@ -76,6 +103,12 @@ outline_size = 5
 outline_color = Color(0.286275, 0.309804, 0.901961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jasdq"]
+font = ExtResource("3_xhfq4")
+font_size = 61
+outline_size = 5
+outline_color = Color(0.286275, 0.309804, 0.901961, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wtw5q"]
 font = ExtResource("3_xhfq4")
 font_size = 61
 outline_size = 5
@@ -159,7 +192,7 @@ offset_right = 166.0
 offset_bottom = -65.0
 grow_vertical = 0
 text = "Player"
-label_settings = SubResource("LabelSettings_wtw5q")
+label_settings = SubResource("LabelSettings_dqqat")
 vertical_alignment = 1
 
 [node name="PlayerHealthText" type="Label" parent="Control/Health" groups=["Health"]]
@@ -173,7 +206,7 @@ offset_right = 310.0
 offset_bottom = -65.0
 grow_vertical = 0
 text = "Health: 20"
-label_settings = SubResource("LabelSettings_rt4uf")
+label_settings = SubResource("LabelSettings_7rhkk")
 vertical_alignment = 1
 
 [node name="PlayerDamageText" type="Label" parent="Control/Health" groups=["Health"]]
@@ -187,7 +220,7 @@ offset_right = 504.0
 offset_bottom = -16.0
 grow_vertical = 0
 text = "Damage Type: None"
-label_settings = SubResource("LabelSettings_1iyjq")
+label_settings = SubResource("LabelSettings_ebvxc")
 vertical_alignment = 1
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="Control/Health" groups=["Health"]]
@@ -204,55 +237,56 @@ show_percentage = false
 
 [node name="EnemyNameText" type="Label" parent="Control/Health" groups=["Health"]]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 192.0
-offset_top = -161.0
-offset_right = 334.0
-offset_bottom = -130.0
+offset_left = -168.0
+offset_top = -96.0
+offset_right = -26.0
+offset_bottom = -65.0
+grow_horizontal = 0
 grow_vertical = 0
-text = "Player"
-label_settings = SubResource("LabelSettings_wtw5q")
+text = "Enemy"
+label_settings = SubResource("LabelSettings_c7wfy")
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="EnemyHealthText" type="Label" parent="Control/Health" groups=["Health"]]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 336.0
-offset_top = -153.0
-offset_right = 478.0
-offset_bottom = -130.0
+offset_left = -312.0
+offset_top = -88.0
+offset_right = -170.0
+offset_bottom = -65.0
+grow_horizontal = 0
 grow_vertical = 0
-text = "Health: 20"
-label_settings = SubResource("LabelSettings_rt4uf")
-vertical_alignment = 1
-
-[node name="EnemyDamageText" type="Label" parent="Control/Health" groups=["Health"]]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 192.0
-offset_top = -113.0
-offset_right = 672.0
-offset_bottom = -81.0
-grow_vertical = 0
-text = "Damage Type: None"
-label_settings = SubResource("LabelSettings_1iyjq")
+text = "Health: 30"
+label_settings = SubResource("LabelSettings_sfjss")
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="Control/Health" groups=["Health"]]
-offset_left = 648.0
-offset_top = 584.0
-offset_right = 1128.0
-offset_bottom = 600.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -504.0
+offset_top = -64.0
+offset_right = -24.0
+offset_bottom = -48.0
 theme = SubResource("Theme_w64s7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_7i8yk")
-max_value = 20.0
-value = 20.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_0bcx7")
+max_value = 30.0
+value = 30.0
+fill_mode = 1
 show_percentage = false
 
 [node name="PlayerDodge" type="Control" parent="Control" groups=["PlayerDodge"]]
@@ -336,7 +370,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "N/A"
-label_settings = SubResource("LabelSettings_wtw5q")
+label_settings = SubResource("LabelSettings_mvpme")
 horizontal_alignment = 1
 
 [node name="DodgeResultText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
@@ -353,7 +387,7 @@ offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Dodge Result:  "
-label_settings = SubResource("LabelSettings_wtw5q")
+label_settings = SubResource("LabelSettings_dfnal")
 horizontal_alignment = 1
 
 [node name="EnemyAttack" type="Control" parent="Control" groups=["EnemyAttack"]]

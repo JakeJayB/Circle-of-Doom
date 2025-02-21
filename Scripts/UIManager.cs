@@ -66,6 +66,12 @@ public partial class UIManager : Control
         }
     }
 
+    public void SetupHealthUI(Player player, Enemy enemy)
+    {
+        GetNode<Label>("Health/PlayerHealthText").Text = "Health: " + player;
+        GetNode<Label>("EnemyHealth/HealthText").Text = "Enemy Health: " + fightScene.enemy.health.ToString();
+    }
+
     public void WeaponSelect(string weapon)
 	{
         switch (weapon)
@@ -88,31 +94,9 @@ public partial class UIManager : Control
         HideUI("PickWeapon");
     }
 
-    public void PlayerAttackButton()
-    {
-        GetNode<Label>("PlayerAttack/AttackRollDieOptions").Visible = false;
-        GetNode<Button>("PlayerAttack/PlayerAttackButton").Visible = false;
-        fightScene.OnPlayerRollAttackDie();
-    }
-
-    public void PlayerDodgeButton()
-    {
-        GetNode<Label>("PlayerDodge/DodgeRollDieOptions").Visible = false;
-        GetNode<Button>("PlayerDodge/PlayerDodgeButton").Visible = false;
-        fightScene.OnPlayerRollDodgeDie();
-    }
-
-    public void EnemyDetermined(int dieRoll, string enemyName, string damageType)
-    {
-        GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
-        GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
-        GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage to Enemy: " + damageType;
-        DisplayUI("DieEnemyRoll");
-    }
-
     public void UpdateAttackDieOptions(DamageType damageType)
     {
-        string DieOption = "Damage by Damage Type:\n";
+        string DieOption = "Damage Type:\n";
 
         switch (damageType)
         {
@@ -128,6 +112,30 @@ public partial class UIManager : Control
         }
 
         GetNode<Label>("PlayerAttack/AttackRollDieOptions").Text = DieOption;
+    }
+
+    public void PlayerAttackButton()
+    {
+        GetNode<Label>("PlayerAttack/AttackRollDieOptions").Visible = false;
+        GetNode<Button>("PlayerAttack/PlayerAttackButton").Visible = false;
+        fightScene.OnPlayerRollAttackDie();
+    }
+
+    public void PlayerDodgeButton()
+    {
+        GetNode<Label>("PlayerDodge/DodgeRollDieOptions").Visible = false;
+        GetNode<Button>("PlayerDodge/PlayerDodgeButton").Visible = false;
+        fightScene.OnPlayerRollDodgeDie();
+    }
+
+
+
+    public void EnemyDetermined(int dieRoll, string enemyName, string damageType)
+    {
+        GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
+        GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
+        GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage to Enemy: " + damageType;
+        DisplayUI("DieEnemyRoll");
     }
 
     public void PlayerAttackDetermined(int roll1, int roll2, float finalAttack)
