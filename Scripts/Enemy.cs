@@ -141,4 +141,6 @@ public partial class Enemy : CharacterBody3D
         this.Visible = false;
 		QueueFree();
     }
+
+	public float GetHealth() { return health; }
 }

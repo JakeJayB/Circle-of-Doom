@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=36 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -120,6 +120,24 @@ font_size = 45
 outline_size = 5
 outline_color = Color(0.286936, 0.308616, 0.902476, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7xa8d"]
+font = ExtResource("3_xhfq4")
+font_size = 75
+outline_size = 15
+outline_color = Color(0, 0.854902, 0.356863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vp28j"]
+font = ExtResource("3_xhfq4")
+font_size = 75
+outline_size = 15
+outline_color = Color(0.945098, 0.109804, 0.0666667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcnw2"]
+font = ExtResource("3_xhfq4")
+font_size = 45
+outline_size = 5
+outline_color = Color(0, 0.854902, 0.356863, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_o3dt1"]
 font = ExtResource("3_xhfq4")
 font_size = 61
@@ -174,6 +192,7 @@ size_flags_vertical = 3
 script = ExtResource("1_qplbv")
 
 [node name="Health" type="Control" parent="Control" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,6 +201,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerNameText" type="Label" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -196,6 +216,7 @@ label_settings = SubResource("LabelSettings_dqqat")
 vertical_alignment = 1
 
 [node name="PlayerHealthText" type="Label" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -210,6 +231,7 @@ label_settings = SubResource("LabelSettings_7rhkk")
 vertical_alignment = 1
 
 [node name="PlayerDamageText" type="Label" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -224,11 +246,15 @@ label_settings = SubResource("LabelSettings_ebvxc")
 vertical_alignment = 1
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="Control/Health" groups=["Health"]]
-layout_mode = 0
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 24.0
-offset_top = 584.0
+offset_top = -64.0
 offset_right = 504.0
-offset_bottom = 600.0
+offset_bottom = -48.0
 theme = SubResource("Theme_w64s7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7i8yk")
 max_value = 20.0
@@ -236,6 +262,7 @@ value = 20.0
 show_percentage = false
 
 [node name="EnemyNameText" type="Label" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -254,6 +281,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="EnemyHealthText" type="Label" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -272,6 +300,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="Control/Health" groups=["Health"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -292,32 +321,30 @@ show_percentage = false
 [node name="PlayerDodge" type="Control" parent="Control" groups=["PlayerDodge"]]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DeterminingDodgeText" type="Label" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
+layout_direction = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = -284.0
+offset_top = 40.0
 offset_right = 576.0
-offset_bottom = -212.0
+offset_bottom = 112.0
 grow_horizontal = 2
-grow_vertical = 2
 text = "Player Dodge: Rolling a Die"
 label_settings = SubResource("LabelSettings_1n03f")
 horizontal_alignment = 1
 
 [node name="PlayerDodgeButton" type="Button" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -337,6 +364,7 @@ theme_override_font_sizes/font_size = 40
 text = "Click to Roll a Die"
 
 [node name="DodgeRollDieOptions" type="Label" parent="Control/PlayerDodge" groups=["PlayerDodge"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -357,6 +385,7 @@ label_settings = SubResource("LabelSettings_eg6e8")
 horizontal_alignment = 1
 
 [node name="DieDodgeText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -374,6 +403,7 @@ label_settings = SubResource("LabelSettings_mvpme")
 horizontal_alignment = 1
 
 [node name="DodgeResultText" type="Label" parent="Control/PlayerDodge" groups=["DieDodgeRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -401,16 +431,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EnemyAttack" type="Label" parent="Control/EnemyAttack" groups=["EnemyAttack"]]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -284.0
-offset_right = 576.0
-offset_bottom = -113.0
+anchors_preset = -1
+anchor_left = 0.502
+anchor_right = 0.502
+offset_left = -578.304
+offset_top = 40.0
+offset_right = 573.696
+offset_bottom = 211.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Enemy Attack: Rolling Two Dice"
@@ -418,6 +447,7 @@ label_settings = SubResource("LabelSettings_od1tu")
 horizontal_alignment = 1
 
 [node name="DieEnemyAttackText" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.502
@@ -434,6 +464,7 @@ label_settings = SubResource("LabelSettings_lpwcw")
 horizontal_alignment = 1
 
 [node name="DieEnemyAttackText2" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.502
@@ -449,6 +480,7 @@ label_settings = SubResource("LabelSettings_gkc15")
 horizontal_alignment = 1
 
 [node name="DamageDealtText" type="Label" parent="Control/EnemyAttack" groups=["DieEnemyAttackRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -475,23 +507,22 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PlayerAttack" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = -284.0
+offset_top = 40.0
 offset_right = 576.0
-offset_bottom = -113.0
+offset_bottom = 211.0
 grow_horizontal = 2
-grow_vertical = 2
 text = "Player Attack: Rolling Two Dice"
 label_settings = SubResource("LabelSettings_od1tu")
 horizontal_alignment = 1
 
 [node name="PlayerAttackButton" type="Button" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -511,6 +542,7 @@ theme_override_font_sizes/font_size = 40
 text = "Click to Roll Two Dice"
 
 [node name="AttackRollDieOptions" type="Label" parent="Control/PlayerAttack" groups=["PlayerAttack"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -529,6 +561,7 @@ label_settings = SubResource("LabelSettings_eg6e8")
 horizontal_alignment = 1
 
 [node name="DiePlayerAttackText" type="Label" parent="Control/PlayerAttack" groups=["DiePlayerAttackRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -546,6 +579,7 @@ label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="DiePlayerAttackText2" type="Label" parent="Control/PlayerAttack" groups=["DiePlayerAttackRoll"]]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -583,26 +617,29 @@ horizontal_alignment = 1
 [node name="DetermineEnemy" type="Control" parent="Control" groups=["DetermineEnemy"]]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DeterminingEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DetermineEnemy"]]
+visible = false
 layout_direction = 1
 layout_mode = 1
-offset_left = -576.0
-offset_top = -284.0
-offset_right = 576.0
-offset_bottom = -113.0
+anchors_preset = -1
+anchor_left = 0.502
+anchor_right = 0.502
+offset_left = -578.304
+offset_top = 40.0
+offset_right = 573.696
+offset_bottom = 211.0
 text = "Enemy Selection: Rolling a Die:"
 label_settings = SubResource("LabelSettings_1n03f")
 horizontal_alignment = 1
 
 [node name="DieEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
+visible = false
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -621,17 +658,24 @@ label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="YourEnemyText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
+visible = false
 layout_direction = 1
 layout_mode = 1
-offset_left = -576.0
-offset_top = -8.0
-offset_right = 576.0
-offset_bottom = 76.0
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.494
+anchor_right = 0.499
+anchor_bottom = 0.494
+offset_left = -574.848
+offset_top = -5.112
+offset_right = 577.152
+offset_bottom = 78.888
 text = "Your Enemy is a "
 label_settings = SubResource("LabelSettings_wtw5q")
 horizontal_alignment = 1
 
 [node name="DamageTypeText" type="Label" parent="Control/DetermineEnemy" groups=["DieEnemyRoll"]]
+visible = false
 layout_direction = 1
 layout_mode = 1
 anchors_preset = 8
@@ -649,18 +693,83 @@ text = "Damage Type"
 label_settings = SubResource("LabelSettings_vj1cl")
 horizontal_alignment = 1
 
+[node name="BattleEnd" type="Control" parent="Control" groups=["BattleEnd"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTint" type="ColorRect" parent="Control/BattleEnd" groups=["BattleEnd"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.615686)
+
+[node name="YouWonText" type="Label" parent="Control/BattleEnd" groups=["BattleEnd", "YouWon"]]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 80.0
+offset_right = 576.0
+offset_bottom = 156.0
+grow_horizontal = 2
+text = "YOU WON!"
+label_settings = SubResource("LabelSettings_7xa8d")
+horizontal_alignment = 1
+
+[node name="YouLostText" type="Label" parent="Control/BattleEnd" groups=["YouLost"]]
+visible = false
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 80.0
+offset_right = 576.0
+offset_bottom = 156.0
+grow_horizontal = 2
+text = "YOU LOST"
+label_settings = SubResource("LabelSettings_vp28j")
+horizontal_alignment = 1
+
+[node name="PickWeaponText" type="Label" parent="Control/BattleEnd" groups=["PickWeapon"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.488
+anchor_right = 0.502
+anchor_bottom = 0.488
+offset_left = -578.304
+offset_top = -36.224
+offset_right = 573.696
+offset_bottom = 47.776
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(416, 8)
+text = "Press Enter To Return"
+label_settings = SubResource("LabelSettings_rcnw2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PickWeaponText" type="Label" parent="Control" groups=["PickWeapon"]]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -244.0
-offset_right = 576.0
-offset_bottom = -160.0
+anchors_preset = -1
+anchor_left = 0.502
+anchor_right = 0.502
+offset_left = -578.304
+offset_top = 80.0
+offset_right = 573.696
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Pick a Weapon"

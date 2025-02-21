@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Channels;
 using static Enemy;
 
@@ -13,7 +14,7 @@ public partial class Player : CharacterBody3D
     //private float cameraPitch = 0.0f;
     //private float health = 20.0f;
     private float health = 10.0f;
-    public bool isDead = false;
+    private bool isDead = false;
     private bool canMove = true;
 
     private Node3D neck;
@@ -155,4 +156,6 @@ public partial class Player : CharacterBody3D
         health -= damage;
         GD.Print("Player Health: " + health);
     }
+
+    public float GetHealth() { return health; }
 }

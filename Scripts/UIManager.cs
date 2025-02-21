@@ -9,9 +9,14 @@ public partial class UIManager : Control
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        ResetEverything();
+        player = GetParent().GetNode<Player>("Player");
+        fightScene = GetParent().GetNode<FightScene>("Fight Scene");
+    }
+
+    public void ResetEverything()
+    {
 		var uiGroups = GetChildren();
-
-
 
         foreach (Node group in uiGroups)
         {
@@ -20,16 +25,12 @@ public partial class UIManager : Control
             foreach (Node node in group.GetChildren())
             {
                 item = (CanvasItem)node;
-			    item.Visible = false;
+                item.Visible = false;
             }
             item = (CanvasItem)group;
             item.Visible = false;
         }
-
-        player = GetParent().GetNode<Player>("Player");
-        fightScene = GetParent().GetNode<FightScene>("Fight Scene");
     }
-
 
     public void DisplayUI(string uiGroup)
     {
@@ -66,11 +67,31 @@ public partial class UIManager : Control
         }
     }
 
-    public void SetupHealthUI(Player player, Enemy enemy)
+    public void SetupHealthUI(Player player, Enemy enemy, bool shouldDisplay = true)
     {
-        GetNode<Label>("Health/PlayerHealthText").Text = "Health: " + player;
-        GetNode<Label>("EnemyHealth/HealthText").Text = "Enemy Health: " + fightScene.enemy.health.ToString();
+        if (player != null)
+        {
+            float playerHealth = player.GetHealth();
+            GetNode<Label>("Health/PlayerHealthText").Text = "Health: " + playerHealth;
+            GetNode<ProgressBar>("Health/PlayerHealthBar").Value = playerHealth;         
+        }
+
+        if(enemy != null)
+        { 
+            float enemyHealth = enemy.GetHealth();
+            GetNode<Label>("Health/EnemyHealthText").Text = "Enemy Health: " + enemyHealth;
+            GetNode<ProgressBar>("Health/EnemyHealthBar").Value = enemyHealth;
+        }
+
+        if(shouldDisplay)
+            DisplayUI("Health");
     }
+
+    public void UpdateHealthUI(Player player, Enemy enemy) => SetupHealthUI(player, enemy, false);
+
+    public void UpdateEnemyName(string name) => GetNode<Label>("Health/EnemyNameText").Text = name;
+
+    public void UpdateDamageType(string type) => GetNode<Label>("Health/PlayerDamageText").Text = "Damage Type: " + type; 
 
     public void WeaponSelect(string weapon)
 	{
@@ -128,13 +149,12 @@ public partial class UIManager : Control
         fightScene.OnPlayerRollDodgeDie();
     }
 
-
-
     public void EnemyDetermined(int dieRoll, string enemyName, string damageType)
     {
         GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
         GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
         GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage to Enemy: " + damageType;
+        UpdateEnemyName(enemyName);
         DisplayUI("DieEnemyRoll");
     }
 

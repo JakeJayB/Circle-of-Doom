@@ -31,7 +31,7 @@ public partial class FightScene : StaticBody3D
         weaponSelectedTaskSource = new TaskCompletionSource<bool>();
 
         //await for player to select weapon UI button
-        uiManager.SetupHealthUI();
+        uiManager.SetupHealthUI(player, enemy);
         uiManager.DisplayUI("PickWeapon");
         await weaponSelectedTaskSource.Task;
 
@@ -43,12 +43,13 @@ public partial class FightScene : StaticBody3D
         enemy.AssignEnemy(Enemy.GetEnemy(dieRoll));
         string damageType = player.weapon.AssignDamageType(enemy.enemyType);
         uiManager.EnemyDetermined(dieRoll, Enemy.GetEnemy(dieRoll).ToString(), damageType);
-
+        uiManager.UpdateDamageType(damageType);
+            
         // await for 4 of seconds
         await ToSignal(GetTree().CreateTimer(4), "timeout");
         uiManager.HideDetermineEnemyUI();
 
-        while (!player.isDead) 
+        while (!player.isPlayerDead()) 
         {
             // for die rolls 
             int attackRoll1, attackRoll2, dodgeRoll;
@@ -68,6 +69,7 @@ public partial class FightScene : StaticBody3D
             finalAttack = player.Attack(attackRoll1, attackRoll2);
             enemy.TakeDamage(finalAttack);
             uiManager.PlayerAttackDetermined(attackRoll1, attackRoll2, finalAttack);
+            uiManager.UpdateHealthUI(null, enemy);
             await ToSignal(GetTree().CreateTimer(5), "timeout");
             uiManager.HidePlayerAttackUI();
             //await ToSignal(GetTree().CreateTimer(2), "timeout");
@@ -94,10 +96,22 @@ public partial class FightScene : StaticBody3D
             dodgeRoll = RollDice();
             dodgeResult = player.Dodge(dodgeRoll, finalAttack);
             uiManager.PlayerDodgeDetermined(dodgeRoll, dodgeResult);
+            uiManager.UpdateHealthUI(player, null);
             await ToSignal(GetTree().CreateTimer(5), "timeout");
             uiManager.HidePlayerDodgeUI();
         }
+
+        if (player.isPlayerDead())
+            Win();
+        else if (enemy.isEnemyDead())
+            Lose();
+        
         ResetEverything();
+    }
+
+    private void Win()
+    {
+        uiManager.
     }
 
     private int RollDice()
