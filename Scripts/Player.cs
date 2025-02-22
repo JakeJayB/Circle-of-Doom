@@ -10,7 +10,7 @@ public partial class Player : CharacterBody3D
     private Vector3 velocity;
     private const float Speed = 5.0f;
     private const float JumpVelocity = 4.5f;
-    private const float camSensitivity = 0.006f;
+    private const float camSensitivity = 0.004f;
     //private float cameraPitch = 0.0f;
     //private float health = 20.0f;
     private float health = 10.0f;
@@ -18,39 +18,39 @@ public partial class Player : CharacterBody3D
     private bool canMove = true;
 
     private Node3D neck;
-	private Camera3D camera;
+    private Camera3D camera;
     private Node3D battlePos;
+    private Transform3D mapPos;
     public Weapon weapon = new Weapon();
 
 
     public override void _Ready()
     {
-		Input.MouseMode = Input.MouseModeEnum.Captured;
-		neck = GetNode<Node3D>("Neck");
-		camera = GetNode<Camera3D>("Neck/Camera3D");
+        neck = GetNode<Node3D>("Neck");
+        camera = GetNode<Camera3D>("Neck/Camera3D");
         battlePos = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
     }
 
     public override void _Input(InputEvent @event)
     {
-        if(canMove && @event is InputEventMouseMotion m)
+        if (canMove && @event is InputEventMouseMotion m)
         {
             //neck.RotateY(-m.Relative.X * camSensitivity);
             RotateY(-m.Relative.X * camSensitivity);
 
-/*            // Rotate camera on the X-axis for vertical movement (pitch)
-            cameraPitch -= m.Relative.Y * camSensitivity;
+            /*            // Rotate camera on the X-axis for vertical movement (pitch)
+                        cameraPitch -= m.Relative.Y * camSensitivity;
 
-            // Clamp the pitch to prevent flipping
-            cameraPitch = Mathf.Clamp(cameraPitch, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
+                        // Clamp the pitch to prevent flipping
+                        cameraPitch = Mathf.Clamp(cameraPitch, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
 
-            // Apply the clamped pitch to the camera's rotation
-            camera.Rotation = new Vector3(cameraPitch, camera.Rotation.Y, camera.Rotation.Z);*/
+                        // Apply the clamped pitch to the camera's rotation
+                        camera.Rotation = new Vector3(cameraPitch, camera.Rotation.Y, camera.Rotation.Z);*/
         }
     }
 
     public override void _PhysicsProcess(double delta)
-	{
+    {
         MoveAndSlide();
         // Add the gravity.
         if (!IsOnFloor())
@@ -64,7 +64,7 @@ public partial class Player : CharacterBody3D
         if (!canMove) return;
 
         // Handle Jump.
-        if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+        if (Input.IsActionJustPressed("Jump") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
         }
@@ -86,21 +86,27 @@ public partial class Player : CharacterBody3D
         }
 
         Velocity = velocity;
-	}
+    }
 
-	public void TeleportToBattle()
-	{
+    public void TeleportToBattle()
+    {
         canMove = false;
-        Input.MouseMode = Input.MouseModeEnum.Visible; 
-        
+        Input.MouseMode = Input.MouseModeEnum.Visible;
+
         velocity.X = 0;
         velocity.Z = 0;
         Velocity = velocity;
 
-        Position = battlePos.GlobalPosition;
-        //neck.Rotation = battlePos.Rotation;
-        Rotation = battlePos.GlobalRotation;
+        mapPos = Transform;
+        Transform = battlePos.GlobalTransform;
+    }
 
+    public void TeleportToMap()
+    {
+        canMove = true;
+        weapon.ResetWeapon();
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+        Transform = mapPos;
     }
 
     public float Attack(int roll1, int roll2)
@@ -140,7 +146,6 @@ public partial class Player : CharacterBody3D
         }
             
     }
-
     public bool isPlayerDead()
     {
         if (!isDead && health <= 0)

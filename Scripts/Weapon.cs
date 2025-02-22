@@ -37,18 +37,21 @@ public partial class Weapon : Node
         {WeaponType.BOW, Enemy.EnemyType.NONE },
     };
 
-
-
     public Weapon()
     {
-        weapon = WeaponType.NONE;
-        damage = DamageType.NEUTRAL;
+        ResetWeapon();
     }
 
     public void AssignWeapon(WeaponType weapon)
 	{
 		this.weapon = weapon;
 	}
+
+    public void ResetWeapon()
+    {
+        weapon = WeaponType.NONE;
+        damage = DamageType.NEUTRAL;
+    }
 
     public string AssignDamageType(Enemy.EnemyType enemyType)
     {

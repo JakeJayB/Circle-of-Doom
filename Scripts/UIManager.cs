@@ -67,27 +67,30 @@ public partial class UIManager : Control
         }
     }
 
-    public void SetupHealthUI(Player player, Enemy enemy, bool shouldDisplay = true)
+
+    public void SetupHealthUI(Player player, Enemy enemy)
+    {
+        GetNode<Label>("Health/PlayerDamageText").Text = "Damage Type: None";
+        UpdateHealthUI(player, enemy);
+        DisplayUI("Health");
+    }
+
+    public void UpdateHealthUI(Player player, Enemy enemy)
     {
         if (player != null)
         {
             float playerHealth = player.GetHealth();
             GetNode<Label>("Health/PlayerHealthText").Text = "Health: " + playerHealth;
-            GetNode<ProgressBar>("Health/PlayerHealthBar").Value = playerHealth;         
+            GetNode<ProgressBar>("Health/PlayerHealthBar").Value = playerHealth;
         }
 
-        if(enemy != null)
-        { 
+        if (enemy != null)
+        {
             float enemyHealth = enemy.GetHealth();
             GetNode<Label>("Health/EnemyHealthText").Text = "Enemy Health: " + enemyHealth;
             GetNode<ProgressBar>("Health/EnemyHealthBar").Value = enemyHealth;
         }
-
-        if(shouldDisplay)
-            DisplayUI("Health");
-    }
-
-    public void UpdateHealthUI(Player player, Enemy enemy) => SetupHealthUI(player, enemy, false);
+    }  
 
     public void UpdateEnemyName(string name) => GetNode<Label>("Health/EnemyNameText").Text = name;
 
@@ -152,7 +155,7 @@ public partial class UIManager : Control
     public void EnemyDetermined(int dieRoll, string enemyName, string damageType)
     {
         GetNode<Label>("DetermineEnemy/DieEnemyText").Text = dieRoll.ToString();
-        GetNode<Label>("DetermineEnemy/YourEnemyText").Text += enemyName;
+        GetNode<Label>("DetermineEnemy/YourEnemyText").Text = "Your Enemy is a " + enemyName;
         GetNode<Label>("DetermineEnemy/DamageTypeText").Text = "Damage to Enemy: " + damageType;
         UpdateEnemyName(enemyName);
         DisplayUI("DieEnemyRoll");

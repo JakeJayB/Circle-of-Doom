@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel.Design;
 using System.Threading.Tasks;
 
 public partial class FightScene : StaticBody3D
@@ -102,16 +103,46 @@ public partial class FightScene : StaticBody3D
         }
 
         if (player.isPlayerDead())
-            Win();
-        else if (enemy.isEnemyDead())
             Lose();
-        
-        ResetEverything();
+        else if (enemy.isEnemyDead())
+            Win();
     }
 
-    private void Win()
+    private async void Win()
     {
-        uiManager.
+        uiManager.DisplayUI("YouWon");
+
+        while (true)
+        {
+            // Wait for the next frame
+            await ToSignal(GetTree(), "process_frame"); 
+
+            // ui_accept == Enter key
+            if (Input.IsActionJustPressed("ui_accept")) 
+                break;
+        }
+        player.TeleportToMap();
+        enemy.DestroyEnemy();
+        uiManager.ResetEverything();
+        ResetEverything();
+
+    }
+
+    private async void Lose()
+    {
+        uiManager.DisplayUI("YouLost");
+
+        while (true)
+        {
+            // Wait for the next frame
+            await ToSignal(GetTree(), "process_frame");
+
+            // Y Key = Reload scene // N Key = Load Main Menu
+            if (Input.IsActionJustPressed("Yes"))
+                GetTree().ReloadCurrentScene();
+            else if (Input.IsActionJustPressed("No"))
+                GD.Print("FightScene: Main Menu doesn't exist yet");
+        }
     }
 
     private int RollDice()
@@ -127,6 +158,7 @@ public partial class FightScene : StaticBody3D
         weaponSelectedTaskSource = null;
         playerRollAttackDieTaskSource = null;
         playerRollDodgeDieTaskSource = null;
+        GD.Print("FightScene: Everything has been reset");
     }
 
     // These methods update the event handlers 
