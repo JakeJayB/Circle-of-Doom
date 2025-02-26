@@ -1,0 +1,35 @@
+[gd_resource type="Terrain3DAssets" load_steps=9 format=3 uid="uid://b1qrrxoyvke0k"]
+
+[ext_resource type="Texture2D" uid="uid://ds24ojtgc5n4v" path="res://Textures/grass_albedo_height.png" id="1_vud4k"]
+[ext_resource type="Texture2D" uid="uid://dntjsqale3jin" path="res://Textures/grass_normal_roughness.png" id="2_b5i81"]
+[ext_resource type="Texture2D" uid="uid://bveqs5w82astl" path="res://Textures/rock_albedo_height.png" id="3_g0qtv"]
+[ext_resource type="Texture2D" uid="uid://xyl15ii0xm14" path="res://Textures/rock_normal_roughness.png" id="4_nofbl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ou1f"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 85.0
+distance_fade_max_distance = 75.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_0fw0a"]
+material_override = SubResource("StandardMaterial3D_8ou1f")
+generated_type = 1
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ex0fi"]
+name = "grass_albedo_height"
+albedo_texture = ExtResource("1_vud4k")
+normal_texture = ExtResource("2_b5i81")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_o2b3n"]
+name = "rock_albedo_height"
+id = 1
+albedo_texture = ExtResource("3_g0qtv")
+normal_texture = ExtResource("4_nofbl")
+
+[resource]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_0fw0a")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_ex0fi"), SubResource("Terrain3DTextureAsset_o2b3n")])
