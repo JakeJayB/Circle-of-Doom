@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b7loo25y7k3xh"]
+[gd_scene load_steps=36 format=3 uid="uid://b7loo25y7k3xh"]
 
 [ext_resource type="Script" path="res://Scripts/FightScene.cs" id="1_hby23"]
 [ext_resource type="Texture2D" uid="uid://bt473hrx31orl" path="res://Images/Bow.png" id="1_nek8c"]
@@ -18,9 +18,6 @@ material = SubResource("StandardMaterial3D_46kra")
 size = Vector2(1, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_m2e64"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_u5ulb"]
-size = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dqqat"]
 font = ExtResource("3_xhfq4")
@@ -158,7 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 shadow_enabled = true
 
 [node name="Fight Scene" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1726, 0, -176.798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.1726, 64.6624, -176.798)
 script = ExtResource("1_hby23")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Fight Scene"]
@@ -167,7 +164,6 @@ mesh = SubResource("PlaneMesh_gxyg7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Fight Scene"]
 rotation_order = 0
-visible = false
 shape = SubResource("WorldBoundaryShape3D_m2e64")
 
 [node name="Player Pos" type="Node3D" parent="Fight Scene"]
@@ -175,16 +171,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -2)
 
 [node name="Enemy Pos" type="Node3D" parent="Fight Scene"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 1.5, 2)
-
-[node name="Main Terrain" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Main Terrain"]
-transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
-mesh = SubResource("PlaneMesh_u5ulb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Main Terrain"]
-rotation_order = 0
-shape = SubResource("WorldBoundaryShape3D_m2e64")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -851,15 +837,15 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Player" parent="." instance=ExtResource("1_qqx0k")]
-transform = Transform3D(0.995551, 0, 0, 0, 0.995551, 0, 0, 0, 0.995551, 0.00123167, 3.72547, 3.19333)
+transform = Transform3D(0.995551, 0, 0, 0, 0.995551, 0, 0, 0, 0.995551, 0.00123167, 61.5539, 3.19333)
 slide_on_ceiling = false
 
 [node name="Enemy2" parent="." instance=ExtResource("2_ixa3a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.781, 6.75312, -11.1203)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.781, 64.5816, -11.1203)
 slide_on_ceiling = false
 
 [node name="Enemy" parent="." instance=ExtResource("2_ixa3a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37656, 19.1053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 61.205, 19.1053)
 slide_on_ceiling = false
 
 [connection signal="pressed" from="Control/PlayerDodge/PlayerDodgeButton" to="Control" method="PlayerDodgeButton"]
