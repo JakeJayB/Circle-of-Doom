@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6ij01o6etmsd"]
+
+[ext_resource type="PackedScene" uid="uid://562wnbh4jpf4" path="res://Props/tent_poles_01.gltf" id="1_vetk5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hhku5"]
+size = Vector3(2.9682, 2.85571, 3.00525)
+
+[node name="tent_poles_01" instance=ExtResource("1_vetk5")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43277, 1.40002, -1.51593)
+shape = SubResource("BoxShape3D_hhku5")

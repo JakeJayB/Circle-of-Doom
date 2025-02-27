@@ -1,0 +1,54 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://x1quk56mlp0t"
+path="res://.godot/imported/wood_fence_broken_01.gltf-31c94405425499ea6a228d1f02ce01e2.scn"
+
+[deps]
+
+source_file="res://Props/wood_fence_broken_01.gltf"
+dest_files=["res://.godot/imported/wood_fence_broken_01.gltf-31c94405425499ea6a228d1f02ce01e2.scn"]
+
+[params]
+
+nodes/root_type="RigidBody3D"
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Node0/Node1": {
+"generate/physics": true
+},
+"PATH:Node0/Node2": {
+"generate/physics": true
+},
+"PATH:Node0/Node20": {
+"generate/physics": true
+},
+"PATH:Node0/Node3": {
+"generate/physics": true
+},
+"PATH:Node0/Node4": {
+"import/skip_import": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

@@ -17,6 +17,7 @@ material = SubResource("StandardMaterial3D_k7rk1")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r7cng"]
 
 [node name="Enemy" type="CharacterBody3D"]
+floor_max_angle = 1.39626
 script = ExtResource("1_1hat6")
 
 [node name="Capsule" type="MeshInstance3D" parent="."]

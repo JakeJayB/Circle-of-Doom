@@ -1,9 +1,13 @@
-[gd_resource type="Terrain3DAssets" load_steps=9 format=3 uid="uid://b1qrrxoyvke0k"]
+[gd_resource type="Terrain3DAssets" load_steps=15 format=3 uid="uid://b1qrrxoyvke0k"]
 
 [ext_resource type="Texture2D" uid="uid://ds24ojtgc5n4v" path="res://Textures/grass_albedo_height.png" id="1_vud4k"]
 [ext_resource type="Texture2D" uid="uid://dntjsqale3jin" path="res://Textures/grass_normal_roughness.png" id="2_b5i81"]
 [ext_resource type="Texture2D" uid="uid://bveqs5w82astl" path="res://Textures/rock_albedo_height.png" id="3_g0qtv"]
 [ext_resource type="Texture2D" uid="uid://xyl15ii0xm14" path="res://Textures/rock_normal_roughness.png" id="4_nofbl"]
+[ext_resource type="Texture2D" uid="uid://c3afdlk1bje0c" path="res://Textures/ground_albedo_height.png" id="5_yfabs"]
+[ext_resource type="Texture2D" uid="uid://cy2ykcvbpv5ko" path="res://Textures/ground_normal_roughness.png" id="6_g0qt5"]
+[ext_resource type="Texture2D" uid="uid://bvktc3h120msn" path="res://Textures/Gravel_albedo_height.png" id="7_cv4je"]
+[ext_resource type="Texture2D" uid="uid://xxt45ows4d8x" path="res://Textures/gravel_normal_roughness.png" id="8_7fksd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ou1f"]
 transparency = 4
@@ -30,6 +34,19 @@ id = 1
 albedo_texture = ExtResource("3_g0qtv")
 normal_texture = ExtResource("4_nofbl")
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_a8ndo"]
+name = "rock_albedo_height"
+id = 2
+albedo_color = Color(0.715044, 0.655895, 0.690523, 1)
+albedo_texture = ExtResource("5_yfabs")
+normal_texture = ExtResource("6_g0qt5")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_e2djd"]
+name = "Gravel_albedo_height"
+id = 3
+albedo_texture = ExtResource("7_cv4je")
+normal_texture = ExtResource("8_7fksd")
+
 [resource]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_0fw0a")])
-texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_ex0fi"), SubResource("Terrain3DTextureAsset_o2b3n")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_ex0fi"), SubResource("Terrain3DTextureAsset_o2b3n"), SubResource("Terrain3DTextureAsset_a8ndo"), SubResource("Terrain3DTextureAsset_e2djd")])

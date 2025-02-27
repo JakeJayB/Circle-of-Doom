@@ -11,7 +11,7 @@ public partial class Player : CharacterBody3D
     private const float Speed = 5.0f;
     private const float JumpVelocity = 4.5f;
     private const float camSensitivity = 0.004f;
-    //private float cameraPitch = 0.0f;
+    private float cameraPitch = 0.0f;
     //private float health = 20.0f;
     private float health = 10.0f;
     private bool isDead = false;
@@ -38,14 +38,14 @@ public partial class Player : CharacterBody3D
             //neck.RotateY(-m.Relative.X * camSensitivity);
             RotateY(-m.Relative.X * camSensitivity);
 
-            /*            // Rotate camera on the X-axis for vertical movement (pitch)
-                        cameraPitch -= m.Relative.Y * camSensitivity;
+            // Rotate camera on the X-axis for vertical movement (pitch)
+            cameraPitch -= m.Relative.Y * camSensitivity;
 
-                        // Clamp the pitch to prevent flipping
-                        cameraPitch = Mathf.Clamp(cameraPitch, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
+            // Clamp the pitch to prevent flipping
+            cameraPitch = Mathf.Clamp(cameraPitch, Mathf.DegToRad(-20f), Mathf.DegToRad(35f));
 
-                        // Apply the clamped pitch to the camera's rotation
-                        camera.Rotation = new Vector3(cameraPitch, camera.Rotation.Y, camera.Rotation.Z);*/
+            // Apply the clamped pitch to the camera's rotation
+            camera.Rotation = new Vector3(cameraPitch, camera.Rotation.Y, camera.Rotation.Z);
         }
     }
 
@@ -99,6 +99,8 @@ public partial class Player : CharacterBody3D
 
         mapPos = Transform;
         Transform = battlePos.GlobalTransform;
+        camera.Rotation = new Vector3(Mathf.DegToRad(-20f), camera.Rotation.Y, camera.Rotation.Z);
+
     }
 
     public void TeleportToMap()
