@@ -35,3 +35,4 @@ _shader_parameters = {
 "noise_texture": SubResource("NoiseTexture2D_lf3kx"),
 "vertex_normals_distance": 128.0
 }
+world_background = 0

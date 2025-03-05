@@ -27,12 +27,14 @@ generated_type = 1
 name = "grass_albedo_height"
 albedo_texture = ExtResource("1_vud4k")
 normal_texture = ExtResource("2_b5i81")
+uv_scale = 0.5
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_o2b3n"]
 name = "rock_albedo_height"
 id = 1
 albedo_texture = ExtResource("3_g0qtv")
 normal_texture = ExtResource("4_nofbl")
+uv_scale = 0.5
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_a8ndo"]
 name = "rock_albedo_height"
@@ -40,6 +42,7 @@ id = 2
 albedo_color = Color(0.715044, 0.655895, 0.690523, 1)
 albedo_texture = ExtResource("5_yfabs")
 normal_texture = ExtResource("6_g0qt5")
+uv_scale = 0.5
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_e2djd"]
 name = "Gravel_albedo_height"
