@@ -8,16 +8,20 @@ using static Enemy;
 public partial class Player : CharacterBody3D
 {
     private Vector3 velocity;
-    private const float Speed = 5.0f;
+    private Vector3 neckGlobalPosition;
+
+    private float rotation_angle = 0f;
+    private const float Speed = 10.0f;
     private const float JumpVelocity = 4.5f;
     private const float camSensitivity = 0.004f;
     private float cameraPitch = 0.0f;
     //private float health = 20.0f;
     private float health = 10.0f;
+    private float rotationAngle;
+
     private bool isDead = false;
     private bool canMove = true;
 
-    private Node3D neck;
     private Camera3D camera;
     private Node3D battlePos;
     private Transform3D mapPos;
@@ -26,7 +30,6 @@ public partial class Player : CharacterBody3D
 
     public override void _Ready()
     {
-        neck = GetNode<Node3D>("Neck");
         camera = GetNode<Camera3D>("Neck/Camera3D");
         battlePos = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
     }
@@ -35,7 +38,6 @@ public partial class Player : CharacterBody3D
     {
         if (canMove && @event is InputEventMouseMotion m)
         {
-            //neck.RotateY(-m.Relative.X * camSensitivity);
             RotateY(-m.Relative.X * camSensitivity);
 
             // Rotate camera on the X-axis for vertical movement (pitch)
@@ -72,7 +74,6 @@ public partial class Player : CharacterBody3D
         // Get the input direction and handle the movement/deceleration.
         // As good practice, you should replace UI actions with custom gameplay actions.
         Vector2 inputDir = Input.GetVector("Move_Right", "Move_Left", "Move_Backward", "Move_Forward");
-        //Vector3 direction = (neck.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
         Vector3 direction = (GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
         if (direction != Vector3.Zero)
         {
@@ -84,8 +85,8 @@ public partial class Player : CharacterBody3D
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
             velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
         }
-
         Velocity = velocity;
+
     }
 
     public void TeleportToBattle()
@@ -165,4 +166,5 @@ public partial class Player : CharacterBody3D
     }
 
     public float GetHealth() { return health; }
+
 }

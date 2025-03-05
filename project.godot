@@ -23,6 +23,10 @@ project/assembly_name="Circle of Doom"
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Move_Forward={

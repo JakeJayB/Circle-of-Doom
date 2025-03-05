@@ -6,7 +6,7 @@ public partial class Enemy : CharacterBody3D
 {
 
 	private Vector3 velocity;
-	private float speed = 4.0f;
+	private float speed = 8.0f;
 	private float jumpVelocity = 2.0f;
 	private float pursueRange = 10.0f;
 	private float attackRange = 1.5f;
@@ -96,7 +96,16 @@ public partial class Enemy : CharacterBody3D
 		}
 
 		Velocity = velocity;
-	}	
+        if (new Vector2(Velocity.X, Velocity.Z).Length() > 0.0)
+        {
+			float rotation_direction = 0.0f;
+            rotation_direction = new Vector2(Velocity.Z, Velocity.X).Angle();
+            Vector3 rot = Rotation;
+            rot.Y = (float)(Mathf.LerpAngle(Rotation.Y, rotation_direction, delta * 10));
+            Rotation = rot;
+        }
+
+    }	
 
 	private void TeleportToBattle()
 	{
