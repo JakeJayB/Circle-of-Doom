@@ -1,31 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuohrta3lh7wt"]
+[gd_scene load_steps=4 format=3 uid="uid://mxbxw7alw11e"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_1hat6"]
+[ext_resource type="PackedScene" uid="uid://dpwie8skpdd0b" path="res://Models/Characters/enemy.glb" id="1_3duo0"]
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="2_dh8rh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hii3w"]
-albedo_color = Color(0.937078, 0.0324629, 0, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ne5e"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gtntx"]
-material = SubResource("StandardMaterial3D_hii3w")
+[node name="enemy" groups=["Enemy"] instance=ExtResource("1_3duo0")]
+script = ExtResource("2_dh8rh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7rk1"]
-albedo_color = Color(0, 0, 0, 1)
+[node name="character" parent="." index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2ivg1"]
-material = SubResource("StandardMaterial3D_k7rk1")
+[node name="leg-left" parent="character/root" index="2"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.125, 0.17625, -0.02375)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r7cng"]
+[node name="leg-right" parent="character/root" index="3"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.125, 0.17625, -0.02375)
 
-[node name="Enemy" type="CharacterBody3D"]
-floor_max_angle = 1.39626
-script = ExtResource("1_1hat6")
+[node name="torso" parent="character/root" index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, 0.17625, -0.02375)
 
-[node name="Capsule" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_gtntx")
-
-[node name="Glasses" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.598433, 0, 0, 0, 0.17, 0, 0, 0, 0.36, 0, 0.668964, 0.381439)
-mesh = SubResource("BoxMesh_2ivg1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_r7cng")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1.235, 0, 0, 0, 1.235, 0, 0, 0, 1.235, 0, 0.567942, 0)
+visible = false
+shape = SubResource("SphereShape3D_3ne5e")

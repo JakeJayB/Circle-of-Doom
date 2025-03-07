@@ -6,12 +6,22 @@ public partial class UIManager : Control
     private Player player;
     private FightScene fightScene;
 
+    private static UIManager instance;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        ResetEverything();
+        if (instance == null)
+            instance = this;
+        else
+            GD.PrintErr("UIManager: More than one instance of UIManager found");
         player = GetParent().GetNode<Player>("Player");
         fightScene = GetParent().GetNode<FightScene>("Fight Scene");
+
+
+        ResetEverything();
+        SetupEnemyCountUI();
+
     }
 
     public void ResetEverything()
@@ -36,7 +46,7 @@ public partial class UIManager : Control
     {
 		Godot.Collections.Array<Node> ui = GetTree().GetNodesInGroup(uiGroup);
 
-        if(ui == null)
+        if (ui == null)
         {
             GD.PrintErr("UIManager: UI group not found");
             return;
@@ -47,7 +57,6 @@ public partial class UIManager : Control
             CanvasItem item = (CanvasItem)node;
 			item.Visible = true;
         }
-        
     }
 
     public void HideUI(string uiGroup)
@@ -67,6 +76,21 @@ public partial class UIManager : Control
         }
     }
 
+    public static void SetupEnemyCountUI()
+    {
+        int currEnemyCount = instance.GetTree().GetNodesInGroup("Enemy").Count;
+        instance.GetNode<Label>("EnemyCount/CountText").Text = currEnemyCount + " Enemies Left";
+        instance.DisplayUI("EnemyCount");
+
+    }
+
+    public static async void AddHealthUI(Player player)
+    {
+        instance.UpdateHealthUI(player, null);
+        instance.DisplayUI("AddHealth");
+        await instance.ToSignal(instance.GetTree().CreateTimer(4), "timeout");
+        instance.HideUI("AddHealth");
+    }
 
     public void SetupHealthUI(Player player, Enemy enemy)
     {

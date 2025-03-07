@@ -11,14 +11,16 @@ public partial class Enemy : CharacterBody3D
 	private float pursueRange = 10.0f;
 	private float attackRange = 1.5f;
     //private float health = 30.0f;
-    private float health = 15.0f;
+    private float health = 1.0f;
 
     public bool isDead = false;
     private bool canMove = true;
 
 	public EnemyType enemyType;
 	private Player player;
-	private FightScene fightScene;
+    private AnimationPlayer anim;
+
+    private FightScene fightScene;
 	private Node3D battlePos;
 
 
@@ -49,17 +51,17 @@ public partial class Enemy : CharacterBody3D
     public override void _Ready()
 	{
 		enemyType = EnemyType.NONE;
-		velocity = new Vector3(0, 0, 0);
-		player = GetParent().GetNode<Player>("Player");
-        fightScene = GetParent().GetNode<FightScene>("Fight Scene");
-
-		// Gets "Enemy Pos" Node3D from the Fight Scene.
-        battlePos = GetParent().GetNode<Node3D>("Fight Scene/Enemy Pos");
+		player = GetParent().GetParent().GetNode<Player>("Player");
+		fightScene = GetParent().GetParent().GetNode<FightScene>("Fight Scene");
+        battlePos = GetParent().GetParent().GetNode<Node3D>("Fight Scene/Enemy Pos");
+        anim = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
 	public override void _PhysicsProcess(double delta)
 	{
         MoveAndSlide();
+		Animate();
+
         // Add the gravity.
         if (!IsOnFloor())
 		{
@@ -75,7 +77,7 @@ public partial class Enemy : CharacterBody3D
 		if (distance < attackRange)
 		{
 			fightScene.StartCoroutine(player, this);
-            TeleportToBattle();
+			TeleportToBattle();
 			player.TeleportToBattle();
 			return;
 		}
@@ -116,7 +118,7 @@ public partial class Enemy : CharacterBody3D
         Velocity = velocity;
 
         Position = battlePos.GlobalPosition;
-		Rotation = battlePos.Rotation;
+		Rotation = battlePos.GlobalRotation;
 	}
 
     public void AssignEnemy(EnemyType enemyType)
@@ -148,8 +150,21 @@ public partial class Enemy : CharacterBody3D
     public void DestroyEnemy()
     {
         this.Visible = false;
-		QueueFree();
+		Free();
     }
 
 	public float GetHealth() { return health; }
+
+
+    private void Animate()
+    {
+        if (Velocity.Length() > 0.0)
+        {
+            anim.Play("walk");
+        }
+        else
+        {
+            anim.Play("idle");
+        }
+    }
 }

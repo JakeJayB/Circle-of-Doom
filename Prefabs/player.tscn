@@ -1,40 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://c82gqv78506w2"]
+[gd_scene load_steps=6 format=3 uid="uid://cndyelmcebly0"]
 
-[ext_resource type="PackedScene" uid="uid://c4tlttjrlyk88" path="res://Prefabs/camera_3d.tscn" id="1_e3uuy"]
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_f0lug"]
+[ext_resource type="PackedScene" uid="uid://c0w5dw0by4kfc" path="res://Models/Characters/character.glb" id="1_bw85d"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="2_cldto"]
+[ext_resource type="PackedScene" uid="uid://c4tlttjrlyk88" path="res://Prefabs/camera_3d.tscn" id="3_jj6qq"]
+[ext_resource type="Script" path="res://Scripts/CameraMovement.cs" id="3_yaa2m"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hxsk"]
-albedo_color = Color(0, 0, 0, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_2a6eb"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_88gce"]
-material = SubResource("StandardMaterial3D_2hxsk")
+[node name="Player" instance=ExtResource("1_bw85d")]
+floor_constant_speed = true
+floor_max_angle = 1.13446
+script = ExtResource("2_cldto")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auquq"]
-albedo_color = Color(0.200971, 0.585276, 0.953993, 1)
+[node name="character" parent="." index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tvhod"]
-material = SubResource("StandardMaterial3D_auquq")
+[node name="leg-left" parent="character/root" index="0"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.125, 0.17625, -0.02375)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xkokb"]
+[node name="leg-right" parent="character/root" index="1"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -0.125, 0.17625, -0.02375)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
-floor_max_angle = 1.309
-script = ExtResource("1_f0lug")
+[node name="torso" parent="character/root" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, -1.80478e-15, 0.17625, -0.02375)
 
-[node name="Glasses" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.683989, 0, 0, 0, 0.258899, 0, 0, 0, 0.407669, 0, 0.545833, 0.338741)
-mesh = SubResource("BoxMesh_88gce")
+[node name="arm-left" parent="character/root/torso" index="0"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.3, 0.175, 0)
 
-[node name="Capsule" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_tvhod")
+[node name="arm-right" parent="character/root/torso" index="1"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.3, 0.1195, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_xkokb")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.453922, 0)
+shape = SubResource("SphereShape3D_2a6eb")
 
-[node name="Neck" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.702917, 0)
+[node name="Neck" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503282, 0)
+script = ExtResource("3_yaa2m")
 
-[node name="Camera3D" parent="Neck" instance=ExtResource("1_e3uuy")]
-transform = Transform3D(-1, 1.42571e-08, -1.46826e-07, -2.04025e-08, 0.972386, 0.233377, 1.46099e-07, 0.233377, -0.972386, 0, 2, -5)
+[node name="Camera3D" parent="Neck" index="0" instance=ExtResource("3_jj6qq")]
+transform = Transform3D(-1, 1.4257e-08, -1.46826e-07, -2.04025e-08, 0.972386, 0.233377, 1.46099e-07, 0.233377, -0.972386, -0.00268412, 1.5, -3.0384)
 visible = true
-fov = 60.0
+fov = 75.0

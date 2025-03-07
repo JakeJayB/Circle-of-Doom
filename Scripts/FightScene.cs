@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Threading.Tasks;
 
-public partial class FightScene : StaticBody3D
+public partial class FightScene : Node3D
 {
     private UIManager uiManager;
     private Player player;
@@ -32,6 +32,7 @@ public partial class FightScene : StaticBody3D
         weaponSelectedTaskSource = new TaskCompletionSource<bool>();
 
         //await for player to select weapon UI button
+        uiManager.HideUI("EnemyCount");
         uiManager.SetupHealthUI(player, enemy);
         uiManager.DisplayUI("PickWeapon");
         await weaponSelectedTaskSource.Task;
@@ -125,6 +126,7 @@ public partial class FightScene : StaticBody3D
         enemy.DestroyEnemy();
         uiManager.ResetEverything();
         ResetEverything();
+        UIManager.SetupEnemyCountUI();
 
     }
 

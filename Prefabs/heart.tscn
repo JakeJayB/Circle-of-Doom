@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr7cdyhkn82fn"]
+
+[ext_resource type="Texture2D" uid="uid://cn03gwjrj4vix" path="res://Images/Heart.png" id="1_bickx"]
+[ext_resource type="Script" path="res://Scripts/Heart.cs" id="1_e4isc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h6cf"]
+transparency = 1
+albedo_texture = ExtResource("1_bickx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bptfr"]
+material = SubResource("StandardMaterial3D_2h6cf")
+
+[node name="Heart" type="Node3D"]
+script = ExtResource("1_e4isc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_bptfr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_bptfr")
+skeleton = NodePath("../MeshInstance3D")

@@ -1,59 +1,42 @@
 using Godot;
-using System;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading.Channels;
 using static Enemy;
 
 
 public partial class Player : CharacterBody3D
 {
     private Vector3 velocity;
-    private Vector3 neckGlobalPosition;
 
-    private float rotation_angle = 0f;
     private const float Speed = 10.0f;
     private const float JumpVelocity = 4.5f;
-    private const float camSensitivity = 0.004f;
-    private float cameraPitch = 0.0f;
-    //private float health = 20.0f;
+    private const float camSensitivity = 0.002f;
     private float health = 10.0f;
-    private float rotationAngle;
 
     private bool isDead = false;
     private bool canMove = true;
 
-    private Camera3D camera;
     private Node3D battlePos;
-    private Transform3D mapPos;
-    public Weapon weapon = new Weapon();
+    private Transform3D prevMapPos;
 
+    private Node3D camera;
+    private Node3D character;
+    private AnimationPlayer anim;
+    public Weapon weapon = new Weapon();
 
     public override void _Ready()
     {
-        camera = GetNode<Camera3D>("Neck/Camera3D");
+        camera = GetNode<Node3D>("Neck");
         battlePos = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
+        anim = GetNode<AnimationPlayer>("AnimationPlayer");
+        character = GetNode<Node3D>("character");
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (canMove && @event is InputEventMouseMotion m)
-        {
-            RotateY(-m.Relative.X * camSensitivity);
-
-            // Rotate camera on the X-axis for vertical movement (pitch)
-            cameraPitch -= m.Relative.Y * camSensitivity;
-
-            // Clamp the pitch to prevent flipping
-            cameraPitch = Mathf.Clamp(cameraPitch, Mathf.DegToRad(-20f), Mathf.DegToRad(35f));
-
-            // Apply the clamped pitch to the camera's rotation
-            camera.Rotation = new Vector3(cameraPitch, camera.Rotation.Y, camera.Rotation.Z);
-        }
-    }
 
     public override void _PhysicsProcess(double delta)
     {
+        // Moves player based on Velocity        
         MoveAndSlide();
+        Animate();
+
         // Add the gravity.
         if (!IsOnFloor())
         {
@@ -72,16 +55,23 @@ public partial class Player : CharacterBody3D
         }
 
         // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
         Vector2 inputDir = Input.GetVector("Move_Right", "Move_Left", "Move_Backward", "Move_Forward");
-        Vector3 direction = (GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+        Vector3 direction = new Vector3(inputDir.X, 0, inputDir.Y).Rotated(Vector3.Up, camera.Rotation.Y).Normalized();
+
+        // if player is moving
         if (direction != Vector3.Zero)
         {
+            // moves the player in the direction of the input.
             velocity.X = direction.X * Speed;
             velocity.Z = direction.Z * Speed;
+
+            Vector3 rot = character.Rotation;
+            rot.Y = (float) Mathf.LerpAngle(character.Rotation.Y, Mathf.Atan2(velocity.X, velocity.Z), delta * 10);
+            character.Rotation = rot;
         }
         else
         {
+            // decelerates the player if no input is detected.
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
             velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
         }
@@ -98,18 +88,21 @@ public partial class Player : CharacterBody3D
         velocity.Z = 0;
         Velocity = velocity;
 
-        mapPos = Transform;
-        Transform = battlePos.GlobalTransform;
-        camera.Rotation = new Vector3(Mathf.DegToRad(-20f), camera.Rotation.Y, camera.Rotation.Z);
+        prevMapPos = Transform;
+        Position = battlePos.GlobalPosition;
+        character.Rotation = battlePos.GlobalRotation;
+        camera.Rotation = battlePos.GlobalRotation;
+        ((CameraMovement)camera).SetMove(false);
 
     }
 
     public void TeleportToMap()
     {
         canMove = true;
+        ((CameraMovement)camera).SetMove(true);
         weapon.ResetWeapon();
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        Transform = mapPos;
+        Transform = prevMapPos;
     }
 
     public float Attack(int roll1, int roll2)
@@ -162,9 +155,36 @@ public partial class Player : CharacterBody3D
     public void TakeDamage(float damage)
     {
         health -= damage;
-        GD.Print("Player Health: " + health);
+    }
+
+    public void AddHealth(float health)
+    {
+        this.health += health;
+        if (this.health > 20)
+            this.health = 20;
+        GD.Print("Player Health: " + this.health);
     }
 
     public float GetHealth() { return health; }
 
+    private void Animate()
+    {
+        if (IsOnFloor())
+        {
+            if (Velocity.Length() > 0)
+            {
+                anim.Play("walk");
+            }
+            else
+            {
+                anim.Play("idle");
+            }
+        }
+        else
+        {
+            anim.Play("jump");
+        }
+    }
+
+    
 }

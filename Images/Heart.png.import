@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1duec1n7d2fq"
-path.s3tc="res://.godot/imported/longsword.png-d7a84f21cb012fb75425eaf56f8b67b3.s3tc.ctex"
+uid="uid://cn03gwjrj4vix"
+path.s3tc="res://.godot/imported/Heart.png-b9b5549f6500b51bee4e41f7bcd2f48e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Images/longsword.png"
-dest_files=["res://.godot/imported/longsword.png-d7a84f21cb012fb75425eaf56f8b67b3.s3tc.ctex"]
+source_file="res://Images/Heart.png"
+dest_files=["res://.godot/imported/Heart.png-b9b5549f6500b51bee4e41f7bcd2f48e.s3tc.ctex"]
 
 [params]
 
