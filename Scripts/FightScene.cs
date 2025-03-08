@@ -69,12 +69,12 @@ public partial class FightScene : Node3D
             await ToSignal(GetTree().CreateTimer(1), "timeout");
             attackRoll1 = RollDice();  attackRoll2 = RollDice();
             finalAttack = player.Attack(attackRoll1, attackRoll2);
+
             enemy.TakeDamage(finalAttack);
             uiManager.PlayerAttackDetermined(attackRoll1, attackRoll2, finalAttack);
             uiManager.UpdateHealthUI(null, enemy);
-            await ToSignal(GetTree().CreateTimer(5), "timeout");
+            await ToSignal(GetTree().CreateTimer(3), "timeout");
             uiManager.HidePlayerAttackUI();
-            //await ToSignal(GetTree().CreateTimer(2), "timeout");
 
             if(enemy.isEnemyDead())
                 break;
@@ -82,24 +82,25 @@ public partial class FightScene : Node3D
 
             // Enemy Attacks Player
             uiManager.DisplayUI("EnemyAttack");
-            await ToSignal(GetTree().CreateTimer(3), "timeout");
+            await ToSignal(GetTree().CreateTimer(2), "timeout");
             attackRoll1 = RollDice(); attackRoll2 = RollDice();
             finalAttack = enemy.Attack(attackRoll1, attackRoll2);
+
             player.TakeDamage(finalAttack);
             uiManager.EnemyAttackDetermined(attackRoll1, attackRoll2, finalAttack);
-            await ToSignal(GetTree().CreateTimer(5), "timeout");
+            await ToSignal(GetTree().CreateTimer(3), "timeout");
             uiManager.HideEnemyAttackUI();
-            //await ToSignal(GetTree().CreateTimer(2), "timeout");
 
             // Player Dodges Enemey
             uiManager.DisplayUI("PlayerDodge");
             await (playerRollDodgeDieTaskSource.Task);
             await ToSignal(GetTree().CreateTimer(1), "timeout");
             dodgeRoll = RollDice();
+
             dodgeResult = player.Dodge(dodgeRoll, finalAttack);
             uiManager.PlayerDodgeDetermined(dodgeRoll, dodgeResult);
             uiManager.UpdateHealthUI(player, null);
-            await ToSignal(GetTree().CreateTimer(5), "timeout");
+            await ToSignal(GetTree().CreateTimer(3), "timeout");
             uiManager.HidePlayerDodgeUI();
         }
 
@@ -111,23 +112,42 @@ public partial class FightScene : Node3D
 
     private async void Win()
     {
-        uiManager.DisplayUI("YouWon");
+        int enemyCount = GetTree().GetNodesInGroup("Enemy").Count - 1 ;
 
-        while (true)
+        if(enemyCount == 0)
         {
-            // Wait for the next frame
-            await ToSignal(GetTree(), "process_frame"); 
-
-            // ui_accept == Enter key
-            if (Input.IsActionJustPressed("ui_accept")) 
-                break;
+            uiManager.DisplayUI("CompleteGame");
+            while (true)
+            {
+                // Wait for the next frame
+                await ToSignal(GetTree(), "process_frame");
+                // ui_accept == Enter key
+                if (Input.IsActionJustPressed("ui_accept"))
+                    break;
+            }
+            GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+            return;
         }
-        player.TeleportToMap();
-        enemy.DestroyEnemy();
-        uiManager.ResetEverything();
-        ResetEverything();
-        UIManager.SetupEnemyCountUI();
+        else
+        {
+            uiManager.DisplayUI("YouWon");
 
+            while (true)
+            {
+                // Wait for the next frame
+                await ToSignal(GetTree(), "process_frame"); 
+
+                // ui_accept == Enter key
+                if (Input.IsActionJustPressed("ui_accept")) 
+                    break;
+            }
+            player.TeleportToMap();
+            enemy.DestroyEnemy();
+            uiManager.ResetEverything();
+            ResetEverything();
+
+            GetParent().GetNode<UIManager>("Control").SetupEnemyCountUI();
+        }
     }
 
     private async void Lose()
@@ -143,13 +163,13 @@ public partial class FightScene : Node3D
             if (Input.IsActionJustPressed("Yes"))
                 GetTree().ReloadCurrentScene();
             else if (Input.IsActionJustPressed("No"))
-                GD.Print("FightScene: Main Menu doesn't exist yet");
+                GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
         }
     }
 
     private int RollDice()
     {
-        Random random = new Random();
+        Random random = new Random(Guid.NewGuid().GetHashCode());
         return random.Next(1, 7);
     }
 

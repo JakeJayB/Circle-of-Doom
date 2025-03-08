@@ -4,13 +4,12 @@ using System;
 public partial class Heart : Node3D
 {
 
-	private static Player player;
+	private Player player;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		if(player == null)
-            player = GetParent().GetParent().GetNode<Player>("Player");
+        player = GetParent().GetParent().GetNode<Player>("Player");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,8 +23,10 @@ public partial class Heart : Node3D
 
 		if (playerPos.DistanceTo(Position) < 0.5f)
 		{
-			player.AddHealth(10f);
-			UIManager.AddHealthUI(player);
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            player.AddHealth(rand.Next(8, 16));
+
+			GetParent().GetParent().GetNode<UIManager>("Control").AddHealthUI(player);
             Free();
 		}
 

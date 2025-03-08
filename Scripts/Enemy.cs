@@ -6,12 +6,11 @@ public partial class Enemy : CharacterBody3D
 {
 
 	private Vector3 velocity;
-	private float speed = 8.0f;
+	private float speed = 8f;
 	private float jumpVelocity = 2.0f;
-	private float pursueRange = 10.0f;
+	private float pursueRange = 15.0f;
 	private float attackRange = 1.5f;
-    //private float health = 30.0f;
-    private float health = 1.0f;
+    private float health = 20.0f;
 
     public bool isDead = false;
     private bool canMove = true;
@@ -87,7 +86,7 @@ public partial class Enemy : CharacterBody3D
 			target.Y = Position.Y;
 
 			Vector3 direction = Position.DirectionTo(target);
-			velocity = Velocity;
+			//velocity = Velocity;
 			velocity.X = direction.X * speed;
 			velocity.Z = direction.Z * speed;
 		}

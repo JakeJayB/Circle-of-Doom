@@ -1,13 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpscvw5xqmt80"]
+[gd_scene load_steps=3 format=3 uid="uid://de6mt2wugikod"]
 
 [ext_resource type="PackedScene" uid="uid://bs1lsdkc7ixwl" path="res://Props/rock_5_01.gltf" id="1_cvi56"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qjg43"]
-size = Vector3(1, 0.525879, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_203td"]
 
 [node name="rock_5_01" instance=ExtResource("1_cvi56")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.473105, 0.237061, -0.51151)
-shape = SubResource("BoxShape3D_qjg43")
+transform = Transform3D(0.69472, 0, 0, 0, 0.599, 0, 0, 0, 0.7014, 0.473105, 0.237061, -0.51151)
+shape = SubResource("SphereShape3D_203td")

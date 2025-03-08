@@ -1,13 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjmrwf3poei08"]
+[gd_scene load_steps=3 format=3 uid="uid://dxuwjd4lxk1bj"]
 
 [ext_resource type="PackedScene" uid="uid://plleh738qwtr" path="res://Props/tall_rock_3_01.gltf" id="1_4qege"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a6r01"]
-size = Vector3(1.62006, 1.9834, 1.84106)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hgfgb"]
 
 [node name="tall_rock_3_01" instance=ExtResource("1_4qege")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776764, 0.979004, -0.917847)
-shape = SubResource("BoxShape3D_a6r01")
+transform = Transform3D(1.165, 0, 0, 0, 1.165, 0, 0, 0, 1.165, 0.776764, 0.979004, -0.917847)
+shape = SubResource("CapsuleShape3D_hgfgb")

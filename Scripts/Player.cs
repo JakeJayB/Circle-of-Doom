@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using static Enemy;
 
 
@@ -8,8 +9,7 @@ public partial class Player : CharacterBody3D
 
     private const float Speed = 10.0f;
     private const float JumpVelocity = 4.5f;
-    private const float camSensitivity = 0.002f;
-    private float health = 10.0f;
+    private float health = 25.0f;
 
     private bool isDead = false;
     private bool canMove = true;
@@ -20,10 +20,11 @@ public partial class Player : CharacterBody3D
     private Node3D camera;
     private Node3D character;
     private AnimationPlayer anim;
-    public Weapon weapon = new Weapon();
+    public Weapon weapon;
 
     public override void _Ready()
     {
+        weapon = new Weapon();
         camera = GetNode<Node3D>("Neck");
         battlePos = GetParent().GetNode<Node3D>("Fight Scene/Player Pos");
         anim = GetNode<AnimationPlayer>("AnimationPlayer");

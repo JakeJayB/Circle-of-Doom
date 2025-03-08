@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\fightscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\fightscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\heart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\heart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\root.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\root.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\fightscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\fightscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\cameramovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\heart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\heart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|solutionrelative:scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{81D33B32-2D81-4061-881C-E62B786563E8}|Circle of Doom.csproj|e:\\programming stuff\\godot\\circle-of-doom\\scripts\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +42,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Scripts\\Player.cs",
+              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Player.cs",
+              "RelativeToolTip": "Scripts\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T06:56:51.642Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Heart.cs",
+              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Heart.cs",
+              "RelativeDocumentMoniker": "Scripts\\Heart.cs",
+              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Heart.cs",
+              "RelativeToolTip": "Scripts\\Heart.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIA7wBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T04:27:31.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainMenu.cs",
+              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\MainMenu.cs",
+              "RelativeDocumentMoniker": "Scripts\\MainMenu.cs",
+              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\MainMenu.cs",
+              "RelativeToolTip": "Scripts\\MainMenu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T03:22:52.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CameraMovement.cs",
               "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\CameraMovement.cs",
               "RelativeDocumentMoniker": "Scripts\\CameraMovement.cs",
@@ -54,86 +94,43 @@
               "RelativeToolTip": "Scripts\\CameraMovement.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T03:09:16.814Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T03:09:16.814Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Root.cs",
-              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Root.cs",
-              "RelativeDocumentMoniker": "Scripts\\Root.cs",
-              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Root.cs",
-              "RelativeToolTip": "Scripts\\Root.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T03:11:57.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Heart.cs",
-              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Heart.cs",
-              "RelativeDocumentMoniker": "Scripts\\Heart.cs",
-              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Heart.cs",
-              "RelativeToolTip": "Scripts\\Heart.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T01:00:35.021Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Player.cs",
-              "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Player.cs",
-              "RelativeDocumentMoniker": "Scripts\\Player.cs",
-              "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Player.cs",
-              "RelativeToolTip": "Scripts\\Player.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAA1wGgAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T06:56:51.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Enemy.cs",
               "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Scripts\\Enemy.cs",
               "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Enemy.cs",
               "RelativeToolTip": "Scripts\\Enemy.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAYwJgAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T20:55:26.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-06T20:55:26.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "UIManager.cs",
               "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\UIManager.cs",
               "RelativeDocumentMoniker": "Scripts\\UIManager.cs",
               "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\UIManager.cs",
               "RelativeToolTip": "Scripts\\UIManager.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwFEAAABeAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAswEcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T20:16:10.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-08T20:16:10.226Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "FightScene.cs",
               "DocumentMoniker": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\FightScene.cs",
               "RelativeDocumentMoniker": "Scripts\\FightScene.cs",
               "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\FightScene.cs",
               "RelativeToolTip": "Scripts\\FightScene.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAUwCIAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAcwHQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T22:41:49.908Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-08T22:41:49.908Z"
             },
             {
               "$type": "Document",
@@ -143,10 +140,9 @@
               "RelativeDocumentMoniker": "Scripts\\Weapon.cs",
               "ToolTip": "E:\\Programming Stuff\\Godot\\Circle-of-Doom\\Scripts\\Weapon.cs",
               "RelativeToolTip": "Scripts\\Weapon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowDkAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T03:49:53.006Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-15T03:49:53.006Z"
             }
           ]
         }

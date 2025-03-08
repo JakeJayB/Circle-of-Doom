@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Runtime.CompilerServices;
 
 public enum WeaponType
 {
@@ -20,7 +19,7 @@ public enum DamageType
 
 public partial class Weapon : Node
 {
-	public WeaponType weapon;
+	public WeaponType type;
     public DamageType damage;
 
     private static Dictionary<WeaponType, Enemy.EnemyType> Advantage = new Dictionary<WeaponType, Enemy.EnemyType>()
@@ -44,19 +43,19 @@ public partial class Weapon : Node
 
     public void AssignWeapon(WeaponType weapon)
 	{
-		this.weapon = weapon;
+		type = weapon;
 	}
 
     public void ResetWeapon()
     {
-        weapon = WeaponType.NONE;
+        type = WeaponType.NONE;
         damage = DamageType.NEUTRAL;
     }
 
     public string AssignDamageType(Enemy.EnemyType enemyType)
     {
-        Enemy.EnemyType advantage = Advantage[this.weapon];
-        Enemy.EnemyType disadvantage = Disadvantage[this.weapon];
+        Enemy.EnemyType advantage = Advantage[type];
+        Enemy.EnemyType disadvantage = Disadvantage[type];
 
         if (advantage == enemyType)
         {

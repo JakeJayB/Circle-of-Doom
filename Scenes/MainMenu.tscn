@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=3 uid="uid://byifvybiobf0j"]
+
+[ext_resource type="FontFile" uid="uid://bo0wvt5y36lof" path="res://Fonts/Pixelme.ttf" id="1_4lnpg"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_ee7hy"]
+[ext_resource type="Texture2D" uid="uid://ch6dloyamxjd4" path="res://Images/MenuScreen.PNG" id="2_c2skc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qkecy"]
+texture = ExtResource("2_c2skc")
+modulate_color = Color(0.521141, 0.521141, 0.521141, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8d71q"]
+font = ExtResource("1_4lnpg")
+font_size = 96
+outline_size = 15
+outline_color = Color(0.985832, 0.268287, 0, 1)
+shadow_size = 25
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(10, 1)
+
+[sub_resource type="Theme" id="Theme_p0mqd"]
+default_font = ExtResource("1_4lnpg")
+default_font_size = 40
+VBoxContainer/constants/separation = 15
+
+[sub_resource type="Theme" id="Theme_ygm12"]
+default_font = ExtResource("1_4lnpg")
+Button/styles/normal = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngnp6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58m0m"]
+bg_color = Color(0.707967, 0.707967, 0.707966, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkino"]
+bg_color = Color(0.780392, 0.780392, 0.780392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_ee7hy")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qkecy")
+
+[node name="CircleofDoomText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 88.0
+offset_right = 59.0
+offset_bottom = 111.0
+grow_horizontal = 2
+text = "Circle Of Doom"
+label_settings = SubResource("LabelSettings_8d71q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -184.0
+offset_right = 108.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_p0mqd")
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_ygm12")
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.45098, 0.45098, 0.45098, 1)
+theme_override_colors/font_pressed_color = Color(0.728822, 0.728822, 0.728822, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_4lnpg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ngnp6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_58m0m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkino")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ngnp6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngnp6")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.45098, 0.45098, 0.45098, 1)
+theme_override_colors/font_pressed_color = Color(0.728822, 0.728822, 0.728822, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_4lnpg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ngnp6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_58m0m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tkino")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ngnp6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngnp6")
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -6,18 +6,11 @@ public partial class UIManager : Control
     private Player player;
     private FightScene fightScene;
 
-    private static UIManager instance;
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        if (instance == null)
-            instance = this;
-        else
-            GD.PrintErr("UIManager: More than one instance of UIManager found");
         player = GetParent().GetNode<Player>("Player");
         fightScene = GetParent().GetNode<FightScene>("Fight Scene");
-
 
         ResetEverything();
         SetupEnemyCountUI();
@@ -76,20 +69,20 @@ public partial class UIManager : Control
         }
     }
 
-    public static void SetupEnemyCountUI()
+    public void SetupEnemyCountUI()
     {
-        int currEnemyCount = instance.GetTree().GetNodesInGroup("Enemy").Count;
-        instance.GetNode<Label>("EnemyCount/CountText").Text = currEnemyCount + " Enemies Left";
-        instance.DisplayUI("EnemyCount");
+        int currEnemyCount = GetTree().GetNodesInGroup("Enemy").Count;
+        GetNode<Label>("EnemyCount/CountText").Text = currEnemyCount + " Enemies Left";
+        DisplayUI("EnemyCount");
 
     }
 
-    public static async void AddHealthUI(Player player)
+    public async void AddHealthUI(Player player)
     {
-        instance.UpdateHealthUI(player, null);
-        instance.DisplayUI("AddHealth");
-        await instance.ToSignal(instance.GetTree().CreateTimer(4), "timeout");
-        instance.HideUI("AddHealth");
+        UpdateHealthUI(player, null);
+        DisplayUI("AddHealth");
+        await ToSignal(GetTree().CreateTimer(4), "timeout");
+        HideUI("AddHealth");
     }
 
     public void SetupHealthUI(Player player, Enemy enemy)
